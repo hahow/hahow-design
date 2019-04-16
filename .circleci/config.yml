@@ -8,39 +8,55 @@ defaults: &defaults
 #
 version: 2
 jobs:
-  build:
+  checkout:
     <<: *defaults
-
     steps:
       - checkout
-
-      # Download and cache dependencies
+  install:
+    <<: *defaults
+    # Download and cache dependencies
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-
       - run: yarn install
-
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-
+  test:
+    <<: *defaults
+    steps:
       # run tests!
       - run: yarn test
-
       # run visual tests
       - run: yarn chromatic --exit-zero-on-changes
-
   deploy:
     <<: *defaults
-
-    branches:
-      only:
-        - master
-
     steps:
       # Deploy Storybook to GitHub Pages
       - run: yarn deploy-storybook
+workflows:
+  version: 2
+  setup:
+    jobs:
+      - checkout
+      - install:
+          requires:
+            - checkout
+  test:
+    jobs:
+      - test
+          requires:
+            - setup
+  deploy:
+    jobs:
+      - deploy
+          requires:
+            - setup
+            - test
+          filters:
+            branches:
+              only:
+                - master
