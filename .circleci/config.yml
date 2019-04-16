@@ -40,22 +40,17 @@ jobs:
       - run: yarn deploy-storybook
 workflows:
   version: 2
-  setup:
+  build:
     jobs:
       - checkout
       - install:
           requires:
             - checkout
-  test:
-    jobs:
       - test:
           requires:
-            - setup
-  deploy:
-    jobs:
+            - install
       - deploy:
           requires:
-            - setup
             - test
           filters:
             branches:
