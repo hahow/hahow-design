@@ -47,10 +47,10 @@ workflows:
   version: 2
   build:
     jobs:
-      - steps
+      - setup
       - test:
           requires:
-            - steps
+            - setup
       - deploy:
           requires:
             - test
