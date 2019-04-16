@@ -8,26 +8,25 @@ defaults: &defaults
 #
 version: 2
 jobs:
-  checkout:
+  setup:
     <<: *defaults
     steps:
       - checkout
-  install:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/hahow
       # Download and cache dependencies
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-      - run: yarn install
+      - run: yarn
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
   test:
     <<: *defaults
     steps:
@@ -48,18 +47,12 @@ workflows:
   version: 2
   build:
     jobs:
-      - checkout
-      - install:
-          requires:
-            - checkout
+      - steps
       - test:
           requires:
-            - checkout
-            - install
+            - steps
       - deploy:
           requires:
-            - checkout
-            - install
             - test
           filters:
             branches:
