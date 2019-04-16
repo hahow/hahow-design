@@ -37,4 +37,4 @@ jobs:
       - run: yarn test
 
       # run visual tests
-      - run: yarn chromatic
+      - run: yarn chromatic --exit-zero-on-changes
