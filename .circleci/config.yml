@@ -14,6 +14,7 @@ jobs:
       - checkout
   install:
     <<: *defaults
+    steps:
     # Download and cache dependencies
       - restore_cache:
           keys:
@@ -47,12 +48,12 @@ workflows:
             - checkout
   test:
     jobs:
-      - test
+      - test:
           requires:
             - setup
   deploy:
     jobs:
-      - deploy
+      - deploy:
           requires:
             - setup
             - test
