@@ -38,10 +38,10 @@ jobs:
       # run visual tests
       - run: yarn chromatic --exit-zero-on-changes
   deploy:
-    - attach_workspace:
-          at: ~/hahow
     <<: *defaults
     steps:
+      - attach_workspace:
+          at: ~/hahow
       # Deploy Storybook to GitHub Pages
       - run: yarn deploy-storybook
 workflows:
