@@ -15,7 +15,9 @@ jobs:
   install:
     <<: *defaults
     steps:
-    # Download and cache dependencies
+      - attach_workspace:
+          at: ~/hahow
+      # Download and cache dependencies
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
@@ -29,11 +31,15 @@ jobs:
   test:
     <<: *defaults
     steps:
+      - attach_workspace:
+          at: ~/hahow
       # run tests!
       - run: yarn test
       # run visual tests
       - run: yarn chromatic --exit-zero-on-changes
   deploy:
+    - attach_workspace:
+          at: ~/hahow
     <<: *defaults
     steps:
       # Deploy Storybook to GitHub Pages
