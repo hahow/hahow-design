@@ -48,9 +48,12 @@ workflows:
             - checkout
       - test:
           requires:
+            - checkout
             - install
       - deploy:
           requires:
+            - checkout
+            - install
             - test
           filters:
             branches:
