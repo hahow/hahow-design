@@ -52,7 +52,7 @@ jobs:
           at: ~/hahow
       - run:
           command: |
-            yarn global add bit-bin
+            sudo yarn global add bit-bin
             bit config set analytics_reporting false
             bit config set error_reporting false
             bit config set user.name amowu
