@@ -60,7 +60,6 @@ jobs:
             bit config set error_reporting false
             bit config set user.name amowu
             bit config set user.email amowu@hahow.in
-            ls ~/.ssh
             bit init
             bit import
             bit tag --all
