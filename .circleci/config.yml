@@ -50,15 +50,17 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/hahow
-      - run: yarn global add bit-bin
-      - run: bit config set analytics_reporting false
-      - run: bit config set error_reporting false
-      - run: bit config set user.name amowu
-      - run: bit config set user.email amowu@hahow.in
-      - run: bit init
-      - run: bit import
-      - run: bit tag --all
-      - run: bit export hahow.hahow-design
+      - run:
+          command: |
+            yarn global add bit-bin
+            bit config set analytics_reporting false
+            bit config set error_reporting false
+            bit config set user.name amowu
+            bit config set user.email amowu@hahow.in
+            bit init
+            bit import
+            bit tag --all
+            bit export hahow.hahow-design
 workflows:
   version: 2
   build:
