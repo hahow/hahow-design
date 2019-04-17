@@ -36,7 +36,7 @@ jobs:
       - run: yarn test
       # run visual tests
       - run: yarn chromatic --exit-zero-on-changes
-  deploy:
+  deploy_storybook:
     <<: *defaults
     steps:
       - attach_workspace:
@@ -45,6 +45,20 @@ jobs:
       - run: ssh-keyscan github.com >> ~/.ssh/known_hosts
       # Deploy Storybook to GitHub Pages
       - run: yarn deploy-storybook --ci
+  deploy_bit_components:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/hahow
+      - run: yarn global add bit-bin
+      - run: bit config set analytics_reporting false
+      - run: bit config set error_reporting false
+      - run: bit config set user.name amowu
+      - run: bit config set user.email amowu@hahow.in
+      - run: bit init
+      - run: bit import
+      - run: bit tag --all
+      - run: bit export hahow.hahow-design
 workflows:
   version: 2
   build:
@@ -53,7 +67,14 @@ workflows:
       - test:
           requires:
             - setup
-      - deploy:
+      - deploy_storybook:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
+      - deploy_bit_components:
           requires:
             - test
           filters:
