@@ -48,6 +48,9 @@ jobs:
   deploy_bit_components:
     <<: *defaults
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "36:fe:ec:c2:5b:c7:b4:a0:ea:a2:99:e8:d4:1f:38:b7"
       - attach_workspace:
           at: ~/hahow
       - run:
@@ -57,6 +60,7 @@ jobs:
             bit config set error_reporting false
             bit config set user.name amowu
             bit config set user.email amowu@hahow.in
+            ls ~/.ssh
             bit init
             bit import
             bit tag --all
