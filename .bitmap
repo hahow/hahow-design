@@ -70,5 +70,33 @@
         "origin": "AUTHORED",
         "exported": true
     },
+    "dropdown": {
+        "files": [
+            {
+                "relativePath": "src/components/Dropdown/Dropdown.js",
+                "test": false,
+                "name": "Dropdown.js"
+            },
+            {
+                "relativePath": "src/components/Dropdown/Dropdown.stories.js",
+                "test": false,
+                "name": "Dropdown.stories.js"
+            },
+            {
+                "relativePath": "src/components/Dropdown/Dropdown.test.js",
+                "test": true,
+                "name": "Dropdown.test.js"
+            },
+            {
+                "relativePath": "src/components/Dropdown/index.js",
+                "test": false,
+                "name": "index.js"
+            }
+        ],
+        "mainFile": "src/components/Dropdown/index.js",
+        "trackDir": "src/components/Dropdown",
+        "origin": "AUTHORED",
+        "exported": false
+    },
     "version": "14.0.6"
 }
