@@ -16,7 +16,7 @@
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
     "deploy-storybook": "storybook-to-ghpages",
-    "chromatic": "CHROMATIC_APP_CODE=vc9kcgv0a2 chromatic test"
+    "chromatic": "chromatic test"
   },
   "eslintConfig": {
     "extends": "react-app"
