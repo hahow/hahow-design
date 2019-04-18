@@ -27,6 +27,11 @@
     "not ie <= 11",
     "not op_mini all"
   ],
+  "storybook-deployer": {
+    "gitUsername": "Hahow Github Bot",
+    "gitEmail": "dev@hahow.in",
+    "commitMessage": "Deploy Storybook to GitHub Pages [skip ci]"
+  },
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@storybook/addon-actions": "^5.0.8",
