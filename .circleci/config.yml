@@ -19,6 +19,12 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run: yarn
+      - run:
+          command: |
+            bit config set analytics_reporting false
+            bit config set error_reporting false
+            bit config set user.name amowu
+            bit config set user.email amowu@hahow.in
       - save_cache:
           paths:
             - node_modules
@@ -56,11 +62,6 @@ jobs:
           at: ~/hahow
       - run:
           command: |
-            sudo yarn global add bit-bin
-            bit config set analytics_reporting false
-            bit config set error_reporting false
-            bit config set user.name amowu
-            bit config set user.email amowu@hahow.in
             bit init
             bit import
             bit tag --all
