@@ -1,7 +1,11 @@
 {
-  "name": "hahow-design",
+  "name": "@hahow/hahow-design",
   "version": "0.1.0",
-  "private": true,
+  "repository": "hahow/hahow-design",
+  "files": [
+    "dist",
+    "src"
+  ],
   "dependencies": {
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
