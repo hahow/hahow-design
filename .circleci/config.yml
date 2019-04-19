@@ -36,11 +36,17 @@ jobs:
       - run: yarn test
       # run visual tests
       - run: yarn chromatic --exit-zero-on-changes
+  build_bit_components:
     <<: *defaults
     steps:
       - attach_workspace:
           at: ~/hahow
-  deploy_bit_components:
+      - run: yarn build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - dist/
+  export_bit_components:
     <<: *defaults
     steps:
       - add_ssh_keys:
@@ -60,6 +66,10 @@ jobs:
             bit tag --all
             bit export hahow.hahow-design
   deploy_storybook:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/hahow
       - run: mkdir -p ~/.ssh
       - run: ssh-keyscan github.com >> ~/.ssh/known_hosts
       # Deploy Storybook to GitHub Pages
@@ -72,16 +82,19 @@ workflows:
       - test:
           requires:
             - setup
+      - build
       - deploy_storybook:
           requires:
             - test
+            - build
           filters:
             branches:
               only:
                 - master
-      - deploy_bit_components:
+      - export_bit_components:
           requires:
             - test
+            - build
           filters:
             branches:
               only:
