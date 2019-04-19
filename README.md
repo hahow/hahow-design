@@ -1,3 +1,11 @@
+<p align="center">
+  <a href="https://hahow.design">
+    <img width="200" src="https://user-images.githubusercontent.com/559351/56355239-65e0c300-6208-11e9-894d-67c09156aec9.png">
+  </a>
+</p>
+
+<h1 align="center">Hahow Design</h1>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
