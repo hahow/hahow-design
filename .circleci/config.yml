@@ -94,7 +94,6 @@ workflows:
       - deploy_storybook:
           requires:
             - test
-            - build_bit_components
           filters:
             branches:
               only:
@@ -102,7 +101,6 @@ workflows:
       - export_bit_components:
           requires:
             - test
-            - build_bit_components
           filters:
             branches:
               only:
