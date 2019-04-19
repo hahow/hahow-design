@@ -29,9 +29,9 @@ jobs:
             - .
   setup_bit_components:
     <<: *defaults
-    - attach_workspace:
-          at: ~/hahow
     steps:
+      - attach_workspace:
+          at: ~/hahow
       - run:
           command: |
             ./node_modules/.bin/bit config set analytics_reporting false
