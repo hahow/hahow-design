@@ -1,7 +1,14 @@
-defaults: &defaults
+defaults: &container
   working_directory: ~/hahow
   docker:
     - image: circleci/node:dubnium
+defaults: &setup_bit_components
+  - run:
+      command: |
+        ./node_modules/.bin/bit config set analytics_reporting false
+        ./node_modules/.bin/bit config set error_reporting false
+        ./node_modules/.bin/bit config set user.name amowu
+        ./node_modules/.bin/bit config set user.email amowu@hahow.in
 # Javascript Node CircleCI 2.0 configuration file
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
@@ -9,7 +16,7 @@ defaults: &defaults
 version: 2
 jobs:
   setup:
-    <<: *defaults
+    <<: *container
     steps:
       - checkout
       # Download and cache dependencies
@@ -27,23 +34,8 @@ jobs:
           root: .
           paths:
             - .
-  setup_bit_components:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/hahow
-      - run:
-          command: |
-            ./node_modules/.bin/bit config set analytics_reporting false
-            ./node_modules/.bin/bit config set error_reporting false
-            ./node_modules/.bin/bit config set user.name amowu
-            ./node_modules/.bin/bit config set user.email amowu@hahow.in
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
   test:
-    <<: *defaults
+    <<: *container
     steps:
       - attach_workspace:
           at: ~/hahow
@@ -52,23 +44,25 @@ jobs:
       # run visual tests
       - run: yarn chromatic --exit-zero-on-changes
   build_bit_components:
-    <<: *defaults
+    <<: *container
     steps:
       - attach_workspace:
           at: ~/hahow
+      <<: *setup_bit_components
       - run: yarn build
       - persist_to_workspace:
           root: .
           paths:
             - dist/
   export_bit_components:
-    <<: *defaults
+    <<: *container
     steps:
       - add_ssh_keys:
           fingerprints:
             - "36:fe:ec:c2:5b:c7:b4:a0:ea:a2:99:e8:d4:1f:38:b7"
       - attach_workspace:
           at: ~/hahow
+      <<: *setup_bit_components
       - run:
           command: |
             ./node_modules/.bin/bit init
@@ -76,7 +70,7 @@ jobs:
             ./node_modules/.bin/bit tag --all
             ./node_modules/.bin/bit export hahow.hahow-design
   deploy_storybook:
-    <<: *defaults
+    <<: *container
     steps:
       - attach_workspace:
           at: ~/hahow
@@ -85,7 +79,7 @@ jobs:
       # Deploy Storybook to GitHub Pages
       - run: yarn deploy-storybook --ci
   publish_npm:
-    <<: *defaults
+    <<: *container
     steps:
       - attach_workspace:
           at: ~/hahow
@@ -98,29 +92,12 @@ workflows:
       - test:
           requires:
             - setup
-      - deploy_storybook:
-          requires:
-            - test
-          filters:
-            branches:
-              only:
-                - master
-      - setup_bit_components:
-          requires:
-            - setup
-          filters:
-            branches:
-              only:
-                - master
       - build_bit_components:
           requires:
-            - setup_bit_components
-          filters:
-            branches:
-              only:
-                - master
+            - setup
       - export_bit_components:
           requires:
+            - test
             - build_bit_components
           filters:
             branches:
@@ -130,6 +107,13 @@ workflows:
           requires:
             - test
             - build_bit_components
+          filters:
+            branches:
+              only:
+                - master
+      - deploy_storybook:
+          requires:
+            - test
           filters:
             branches:
               only:
