@@ -29,6 +29,8 @@ jobs:
             - .
   setup_bit_components:
     <<: *defaults
+    - attach_workspace:
+          at: ~/hahow
     steps:
       - run:
           command: |
@@ -36,6 +38,10 @@ jobs:
             ./node_modules/.bin/bit config set error_reporting false
             ./node_modules/.bin/bit config set user.name amowu
             ./node_modules/.bin/bit config set user.email amowu@hahow.in
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
   test:
     <<: *defaults
     steps:
