@@ -88,7 +88,9 @@ workflows:
       - test:
           requires:
             - setup
-      - build
+      - build_bit_components:
+          requires:
+            - setup
       - deploy_storybook:
           requires:
             - test
