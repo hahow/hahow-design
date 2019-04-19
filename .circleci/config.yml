@@ -2,13 +2,6 @@ defaults: &container
   working_directory: ~/hahow
   docker:
     - image: circleci/node:dubnium
-defaults: &setup_bit_components
-  - run:
-      command: |
-        ./node_modules/.bin/bit config set analytics_reporting false
-        ./node_modules/.bin/bit config set error_reporting false
-        ./node_modules/.bin/bit config set user.name amowu
-        ./node_modules/.bin/bit config set user.email amowu@hahow.in
 # Javascript Node CircleCI 2.0 configuration file
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
@@ -48,7 +41,6 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/hahow
-      <<: *setup_bit_components
       - run: yarn build
       - persist_to_workspace:
           root: .
@@ -62,9 +54,12 @@ jobs:
             - "36:fe:ec:c2:5b:c7:b4:a0:ea:a2:99:e8:d4:1f:38:b7"
       - attach_workspace:
           at: ~/hahow
-      <<: *setup_bit_components
       - run:
           command: |
+            ./node_modules/.bin/bit config set analytics_reporting false
+            ./node_modules/.bin/bit config set error_reporting false
+            ./node_modules/.bin/bit config set user.name amowu
+            ./node_modules/.bin/bit config set user.email amowu@hahow.in
             ./node_modules/.bin/bit init
             ./node_modules/.bin/bit import
             ./node_modules/.bin/bit tag --all
