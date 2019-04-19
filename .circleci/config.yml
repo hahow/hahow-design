@@ -19,12 +19,6 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run: yarn
-      - run:
-          command: |
-            bit config set analytics_reporting false
-            bit config set error_reporting false
-            bit config set user.name amowu
-            bit config set user.email amowu@hahow.in
       - save_cache:
           paths:
             - node_modules
@@ -33,6 +27,15 @@ jobs:
           root: .
           paths:
             - .
+  setup_bit_components:
+    <<: *defaults
+    steps:
+      - run:
+          command: |
+            ./node_modules/.bin/bit config set analytics_reporting false
+            ./node_modules/.bin/bit config set error_reporting false
+            ./node_modules/.bin/bit config set user.name amowu
+            ./node_modules/.bin/bit config set user.email amowu@hahow.in
   test:
     <<: *defaults
     steps:
@@ -62,10 +65,10 @@ jobs:
           at: ~/hahow
       - run:
           command: |
-            bit init
-            bit import
-            bit tag --all
-            bit export hahow.hahow-design
+            ./node_modules/.bin/bit init
+            ./node_modules/.bin/bit import
+            ./node_modules/.bin/bit tag --all
+            ./node_modules/.bin/bit export hahow.hahow-design
   deploy_storybook:
     <<: *defaults
     steps:
@@ -89,9 +92,6 @@ workflows:
       - test:
           requires:
             - setup
-      - build_bit_components:
-          requires:
-            - setup
       - deploy_storybook:
           requires:
             - test
@@ -99,9 +99,23 @@ workflows:
             branches:
               only:
                 - master
+      - setup_bit_components:
+          requires:
+            - setup
+          filters:
+            branches:
+              only:
+                - master
+      - build_bit_components:
+          requires:
+            - setup_bit_components
+          filters:
+            branches:
+              only:
+                - master
       - export_bit_components:
           requires:
-            - test
+            - build_bit_components
           filters:
             branches:
               only:
