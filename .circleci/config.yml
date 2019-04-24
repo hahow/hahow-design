@@ -66,9 +66,17 @@ workflows:
       - build_npm:
           requires:
             - setup
+          filters:
+            branches:
+              ignore:
+                - master
       - build_storybook:
           requires:
             - setup
+          filters:
+            branches:
+              ignore:
+                - master
       - test:
           requires:
             - setup
