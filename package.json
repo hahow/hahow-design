@@ -16,8 +16,11 @@
     "start": "start-storybook -p 9009 -s public",
     "build": "nwb build-react-component",
     "test": "react-scripts test",
-    "chromatic": "chromatic test",
+    "preversion": "npm test",
+    "version": "standard-changelog && git add CHANGELOG.md",
     "prepublishOnly": "npm run build",
+    "postpublish": "git push origin master --follow-tags",
+    "chromatic": "chromatic test",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
     "deploy-storybook": "storybook-to-ghpages"
@@ -37,6 +40,7 @@
     "@storybook/storybook-deployer": "^2.8.1",
     "babel-loader": "^8.0.5",
     "nwb": "^0.23.0",
+    "standard-changelog": "^2.0.7",
     "storybook-chromatic": "^1.3.2"
   },
   "browserslist": [
