@@ -16,7 +16,6 @@
     "start": "start-storybook -p 9009 -s public",
     "build": "nwb build-react-component",
     "test": "react-scripts test",
-    "preversion": "npm test",
     "version": "standard-changelog && git add CHANGELOG.md",
     "prepublishOnly": "npm run build",
     "postpublish": "git push origin master --follow-tags",
