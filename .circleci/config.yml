@@ -2,22 +2,15 @@ defaults: &container
   working_directory: ~/hahow
   docker:
     - image: circleci/node:dubnium
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2
 jobs:
   setup:
     <<: *container
     steps:
       - checkout
-      # Download and cache dependencies
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
       - run: yarn
       - save_cache:
           paths:
@@ -27,43 +20,27 @@ jobs:
           root: .
           paths:
             - .
-  test:
-    <<: *container
-    steps:
-      - attach_workspace:
-          at: ~/hahow
-      # run tests!
-      - run: yarn test
-      # run visual tests
-      - run: yarn chromatic --exit-zero-on-changes
-  build_bit_components:
+  build_npm:
     <<: *container
     steps:
       - attach_workspace:
           at: ~/hahow
       - run: yarn build
-      - persist_to_workspace:
-          root: .
-          paths:
-            - dist/
-  export_bit_components:
+  build_storybook:
     <<: *container
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "36:fe:ec:c2:5b:c7:b4:a0:ea:a2:99:e8:d4:1f:38:b7"
       - attach_workspace:
           at: ~/hahow
-      - run:
-          command: |
-            ./node_modules/.bin/bit config set analytics_reporting false
-            ./node_modules/.bin/bit config set error_reporting false
-            ./node_modules/.bin/bit config set user.name amowu
-            ./node_modules/.bin/bit config set user.email amowu@hahow.in
-            ./node_modules/.bin/bit init
-            ./node_modules/.bin/bit import
-            ./node_modules/.bin/bit tag --all
-            ./node_modules/.bin/bit export hahow.hahow-design
+      - run: yarn build-storybook
+  test:
+    <<: *container
+    steps:
+      - attach_workspace:
+          at: ~/hahow
+      - run: yarn test
+      # Run visual tests
+      - run: yarn chromatic --exit-zero-on-changes
+  # Deploy Storybook to GitHub Pages
   deploy_storybook:
     <<: *container
     steps:
@@ -71,7 +48,6 @@ jobs:
           at: ~/hahow
       - run: mkdir -p ~/.ssh
       - run: ssh-keyscan github.com >> ~/.ssh/known_hosts
-      # Deploy Storybook to GitHub Pages
       - run: yarn deploy-storybook --ci
   publish_npm:
     <<: *container
@@ -84,29 +60,23 @@ workflows:
   build:
     jobs:
       - setup
+      - build_npm:
+          requires:
+            - setup
+      - build_storybook:
+          requires:
+            - setup
       - test:
           requires:
             - setup
-      - build_bit_components:
-          requires:
-            - setup
-      - export_bit_components:
+      - deploy_storybook:
           requires:
             - test
-            - build_bit_components
           filters:
             branches:
               only:
                 - master
       - publish_npm:
-          requires:
-            - test
-            - build_bit_components
-          filters:
-            branches:
-              only:
-                - master
-      - deploy_storybook:
           requires:
             - test
           filters:
