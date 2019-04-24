@@ -59,6 +59,7 @@ jobs:
           command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/hahow/.npmrc
       - run: mkdir -p ~/.ssh
       - run: ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - run: npm run version
       - run: npm publish
 workflows:
   version: 2
