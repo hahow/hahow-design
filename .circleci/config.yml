@@ -54,6 +54,9 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/hahow
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/hahow/.npmrc
       - run: npm publish
 workflows:
   version: 2
