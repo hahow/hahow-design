@@ -17,6 +17,7 @@
     "build": "nwb build-react-component",
     "test": "react-scripts test",
     "version": "standard-changelog && git add CHANGELOG.md",
+    "postpublish": "git push origin master --follow-tags",
     "chromatic": "chromatic test",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
