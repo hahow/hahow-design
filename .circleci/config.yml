@@ -63,7 +63,7 @@ jobs:
       - run: git config user.email "dev@hahow.in"
       - run: git config user.name "Hahow Github Bot"
       - run: npm run build
-      - run: standard-changelog
+      - run: npm run standard-changelog
       - run: git add CHANGELOG.md
       - run: npm publish
       - run: git push https://${GH_TOKEN}@github.com/hahow/hahow-design.git master --follow-tags
