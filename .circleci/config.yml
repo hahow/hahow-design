@@ -65,7 +65,7 @@ jobs:
       # - run: npm run version
       - run: npm run build
       - run: npm publish
-      - run: git push -q https://${GH_TOKEN}@github.com/hahow/hahow-design.git master --follow-tags
+      - run: git push https://${GH_TOKEN}@github.com/hahow/hahow-design.git master --follow-tags
 workflows:
   version: 2
   build:
