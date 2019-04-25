@@ -6,6 +6,158 @@
 
 <h1 align="center">Hahow Design</h1>
 
+---
+
+🚧🚧🚧
+
+## Table of Contents
+
+* Quick Start
+  * Installation
+  * How to Use
+* Purpose
+* Usage
+  * Directory Structure
+  * 如何使用 `npm link` 本地開發
+
+## Quick Start
+
+### Installation
+
+```
+$ npm install --save @hahow/hahow-design
+```
+
+or
+
+```
+$ yarn add @hahow/hahow-design
+```
+
+### How to Use
+
+```js
+import { Button } from '@hahow/hahow-design';
+
+function App() {
+  return <Button>Hello World!</Button>
+}
+```
+
+![Button](https://user-images.githubusercontent.com/559351/56721156-e195bf00-6776-11e9-93e4-86d9c0e6cd80.png)
+
+其它元件的詳細使用方式請見 [https://hahow.design](https://hahow.design)
+
+---
+
+## Purpose
+
+缺點
+
+開發效率（npm link）
+
+### Pros & Cons
+
+Open Source 的好處：
+
+* 一些第三方服務對開源方案免費（例如 [Chromatic](https://www.chromaticqa.com/)）
+* 搞不好會有人送 PR
+* 信譽驅動開發（）
+* 增加品牌影響力（想像一下 [Ant Design](https://ant.design/)）
+
+---
+
+## Usage
+
+### Directory Structure
+
+```
+.
+├── .circleci
+├── .storybook
+├── src
+│   ├── Component ------------------ ①
+│   │   ├── Component.js ----------- ②
+│   │   ├── Component.stories.js --- ③
+│   │   ├── Component.test.js ------ ④
+│   │   └── index.js --------------- ⑤
+│   └── index.js ------------------- ⑥
+└── nwb.config.js ------------------ ⑦
+```
+
+###
+
+```
+$ npm start
+```
+
+```
+$ npm test
+```
+
+```
+$ npm version <major|minor|patch>
+```
+
+```
+$ npm publish
+```
+
+### 如何使用 `npm link` 本地開發
+
+如果你希望透過直接修改本地原始碼的方式來加速開發效率，建議使用 [npm link](https://docs.npmjs.com/cli/link.html)。
+
+Step 1
+
+`git clone` **@hahow/hahow-design** 至任意位置：
+
+```
+$ git clone https://github.com/hahow/hahow-design.git
+```
+
+or
+
+```
+$ git clone git@github.com:hahow/hahow-design.git
+```
+
+Step 2
+
+使用 `npm link` 建立 global folder：
+
+```
+$ cd hahow-design
+$ npm link
+```
+
+Step 3
+
+切換至使用 **@hahow/hahow-design** 的專案（以 **hh-frontend-react** 為例）：
+
+```
+$ cd hh-frontend-react
+```
+
+同樣使用 `npm link` 建立 symlink：
+
+```
+$ npm link @hahow/hahow-design
+```
+
+完成。如果接下來有變更 **@hahow/hahow-design** 的原始碼，只需要 `npm run build`，**hh-frontend-react** 就會即時更新：
+
+```
+$ npm run build
+```
+
+如果 **hh-frontend-react** 想要取消 symlink，可以使用 `npm unlink`：
+
+```
+$ npm unlink @hahow/hahow-design
+```
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
