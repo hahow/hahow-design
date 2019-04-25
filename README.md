@@ -52,17 +52,21 @@ function App() {
 
 ## Purpose
 
-缺點
-
-開發效率（npm link）
-
 ### Pros & Cons
+
+Component Library 成為獨立 repository 的好處：
+
+* 降低 **hh-frontend-react** 的 bundle size，增加 build time 效率
+
+壞處：
+
+* 🚧 增加開發成本，詳見「如何使用 `npm link` 本地開發」
 
 Open Source 的好處：
 
 * 一些第三方服務對開源方案免費（例如 [Chromatic](https://www.chromaticqa.com/)）
 * 搞不好會有人送 PR
-* 信譽驅動開發（）
+* 信譽驅動開發（工程師要化妝才敢出門）
 * 增加品牌影響力（想像一下 [Ant Design](https://ant.design/)）
 
 ---
