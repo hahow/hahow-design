@@ -44,7 +44,7 @@ function App() {
 }
 ```
 
-![Button](https://user-images.githubusercontent.com/559351/56721156-e195bf00-6776-11e9-93e4-86d9c0e6cd80.png)
+<img width="260" alt="Screen Shot 2019-04-25 at 4 23 37 PM" src="https://user-images.githubusercontent.com/559351/56721156-e195bf00-6776-11e9-93e4-86d9c0e6cd80.png">
 
 其它元件的詳細使用方式請見 [https://hahow.design](https://hahow.design)
 
