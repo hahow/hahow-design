@@ -6,8 +6,6 @@
 
 <h1 align="center">Hahow Design</h1>
 
----
-
 🚧🚧🚧
 
 ## Table of Contents
@@ -15,7 +13,10 @@
 * Quick Start
   * Installation
   * How to Use
+* Feature
 * Purpose
+* Roadmap
+  * To-do List
 * Usage
   * Directory Structure
   * 如何使用 `npm link` 本地開發
@@ -46,11 +47,27 @@ function App() {
 
 <img width="260" alt="Screen Shot 2019-04-25 at 4 23 37 PM" src="https://user-images.githubusercontent.com/559351/56721156-e195bf00-6776-11e9-93e4-86d9c0e6cd80.png">
 
-其它元件的詳細使用方式請見 [https://hahow.design](https://hahow.design)
+其它元件的詳細使用方式請見 [https://hahow.design](https://hahow.design)（WIP）
 
 ---
 
+## Feature
+
+* 開箱即用 Component Library（or Pattern Library）
+* 快速迭代 Hahow Style 產品原型
+* [Automated Visual Testing](https://storybook.js.org/docs/testing/automated-visual-testing/) for [Storybook](https://storybook.js.org/) and [Chromatic](https://www.chromaticqa.com/)
+
 ## Purpose
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/559351/56781700-9fbc5580-6816-11e9-97db-3617e428fc78.png" alt="Design System">
+</p>
+
+![Designer and engineer](https://user-images.githubusercontent.com/559351/56781764-da25f280-6816-11e9-984b-7f709764127f.png)
+
+![Consumer and engineer](https://user-images.githubusercontent.com/559351/56781765-db571f80-6816-11e9-99ac-205d9c3da33b.png)
+
+![Consumer and designer](https://user-images.githubusercontent.com/559351/56781768-dc884c80-6816-11e9-9dc5-73e81e6725a2.png)
 
 ### Pros & Cons
 
@@ -68,6 +85,18 @@ Open Source 的好處：
 * 搞不好會有人送 PR
 * 信譽驅動開發（工程師要化妝才敢出門）
 * 增加品牌影響力（想像一下 [Ant Design](https://ant.design/)）
+
+## Roadmap
+
+![Roadmap](https://user-images.githubusercontent.com/559351/56786069-2e869d80-682a-11e9-970a-8c9779859503.png)
+
+### To-do List
+
+| 正在做的事 | 應該做的事 | 想做的事 |
+| --- | --- | --- |
+| Component Library | | |
+| Open-source | | |
+| - [ ] https://hahow.design | |
 
 ---
 
