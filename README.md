@@ -20,7 +20,10 @@
 * Usage
   * Directory Structure
   * Development
-  * 如何使用 `npm link` 本地開發
+    * 啟動 Storybook
+    * 運行測試
+    * 更新 npm package
+    * 如何使用 `npm link` 本地開發
 
 ## Quick Start
 
@@ -96,8 +99,8 @@ Open Source 的好處：
 | 正在做的事 | 應該做的事 | 想做的事 |
 | --- | --- | --- |
 | ✅Component Library | [Design system renew](https://paper.dropbox.com/doc/Design-system-renew--AcI16u6sqkdJSLGzMylM6j1cAg-Pb5lMXAcTLHfHQ2RagjkP) | |
-| ✅Open-source | | |
-| Apply https://hahow.design | |
+| ✅Open-source | 自動化 `npm version` 和 `npm publish` | |
+| | Apply https://hahow.design |
 
 ---
 
@@ -143,7 +146,7 @@ Open Source 的好處：
 <details>
   <summary>5. Storybook stories</summary>
   <ul>
-    <li>檔名後輟 ***.stories.js**</li>
+    <li>檔名後輟 <b>*.stories.js</b></li>
     <li>Chromatic 依據此檔做 visual testing</li>
   </ul>
 </details>
@@ -166,23 +169,37 @@ Open Source 的好處：
 
 ### Development
 
+#### 啟動 Storybook
+
 ```
 $ npm start
 ```
+
+#### 運行測試
 
 ```
 $ npm test
 ```
 
+#### 更新 npm package
+
+Step 1
+
+更新版本號：
+
 ```
 $ npm version <major|minor|patch>
 ```
+
+Step 2
+
+發佈至 npm registry：
 
 ```
 $ npm publish
 ```
 
-### 如何使用 `npm link` 本地開發
+#### 如何使用 `npm link` 本地開發
 
 如果你希望透過直接修改本地原始碼的方式來加速開發效率，建議使用 [npm link](https://docs.npmjs.com/cli/link.html)。
 
@@ -234,74 +251,3 @@ $ npm run build
 ```
 $ npm unlink @hahow/hahow-design
 ```
-
----
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
