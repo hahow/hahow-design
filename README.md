@@ -19,6 +19,7 @@
   * To-do List
 * Usage
   * Directory Structure
+  * Development
   * 如何使用 `npm link` 本地開發
 
 ## Quick Start
@@ -94,9 +95,9 @@ Open Source 的好處：
 
 | 正在做的事 | 應該做的事 | 想做的事 |
 | --- | --- | --- |
-| Component Library | | |
-| Open-source | | |
-| - [ ] https://hahow.design | |
+| ✅Component Library | [Design system renew](https://paper.dropbox.com/doc/Design-system-renew--AcI16u6sqkdJSLGzMylM6j1cAg-Pb5lMXAcTLHfHQ2RagjkP) | |
+| ✅Open-source | | |
+| Apply https://hahow.design | |
 
 ---
 
@@ -106,19 +107,34 @@ Open Source 的好處：
 
 ```
 .
-├── .circleci
-├── .storybook
+├── .circleci ---------------------- ⑧
+├── .storybook --------------------- ⑨
 ├── src
 │   ├── Component ------------------ ①
-│   │   ├── Component.js ----------- ②
-│   │   ├── Component.stories.js --- ③
+│   │   ├── Component.js ----------- ③
+│   │   ├── Component.stories.js --- ⑤
 │   │   ├── Component.test.js ------ ④
-│   │   └── index.js --------------- ⑤
+│   │   └── index.js --------------- ②
 │   └── index.js ------------------- ⑥
 └── nwb.config.js ------------------ ⑦
 ```
 
-###
+1. React Component
+  * 資料夾名稱採用 Pascal Case 命名法（例如：PrimaryButton）
+2. 需建立 entry file **index.js**
+  * `export { default } from './Component';`
+3. 元件主要的程式碼
+4. Jest 單元測試
+  * 檔名後輟 ***.test.js**
+5. Storybook stories
+  * 檔名後輟 ***.stories.js**
+  * Chromatic 依據此檔做 visual testing
+6. 最後記得將新增元件加入此 exporting list，否則 `npm run build` 不會有結果
+7. 這個專案使用 [nwb](https://github.com/insin/nwb) 這套工具來 build React Component Library
+8. CircleCI 配置
+9. Storybook 配置
+
+### Development
 
 ```
 $ npm start
