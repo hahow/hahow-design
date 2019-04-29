@@ -127,17 +127,17 @@ Open Source 的好處：
 </details>
 <details>
   <summary>2. 需建立 entry file</summary>
-  <p>
-    ```js
+  <pre>
     export { default } from './Component';
-    ```
-  </p>
+  </pre>
 </details>
-<summary>3. 元件主要的程式碼</summary>
+<details>
+  <summary>3. 元件主要的程式碼</summary>
+</details>
 <details>
   <summary>4. Jest 單元測試</summary>
   <ul>
-    <li>檔名後輟 ***.test.js**</li>
+    <li>檔名後輟 <b>*.test.js</b></li>
   </ul>
 </details>
 <details>
@@ -148,15 +148,21 @@ Open Source 的好處：
   </ul>
 </details>
 <details>
-  <summary>6. 最後記得將新增元件加入此 exporting list，否則 `npm run build` 不會有結果</summary>
+  <summary>6. 最後記得將新增元件加入此 exporting list，否則 <code>npm run build</code> 不會有結果</summary>
   <ul>
-    <li>檔名後輟 ***.stories.js**</li>
+    <li>檔名後輟 <b>*.stories.js</b></li>
     <li>Chromatic 依據此檔做 visual testing</li>
   </ul>
 </details>
-<summary>7. 這個專案使用 [nwb](https://github.com/insin/nwb) 這套工具來 build React Component Library</summary>
-<summary>8. CircleCI 配置</summary>
-<summary>9. Storybook 配置</summary>
+<details>
+  <summary>7. 這個專案使用 <a href="https://github.com/insin/nwb">nwb</a> 這套工具來 build React Component Library</summary>
+</details>
+<details>
+  <summary>8. CircleCI 配置</summary>
+</details>
+<details>
+  <summary>9. Storybook 配置</summary>
+</details>
 
 ### Development
 
