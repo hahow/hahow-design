@@ -119,20 +119,44 @@ Open Source 的好處：
 └── nwb.config.js ------------------ ⑦
 ```
 
-1. React Component
-  * 資料夾名稱採用 Pascal Case 命名法（例如：PrimaryButton）
-2. 需建立 entry file **index.js**
-  * `export { default } from './Component';`
-3. 元件主要的程式碼
-4. Jest 單元測試
-  * 檔名後輟 ***.test.js**
-5. Storybook stories
-  * 檔名後輟 ***.stories.js**
-  * Chromatic 依據此檔做 visual testing
-6. 最後記得將新增元件加入此 exporting list，否則 `npm run build` 不會有結果
-7. 這個專案使用 [nwb](https://github.com/insin/nwb) 這套工具來 build React Component Library
-8. CircleCI 配置
-9. Storybook 配置
+<details>
+  <summary>1. React Component</summary>
+  <ul>
+    <li>資料夾名稱採用 Pascal Case 命名法（例如：PrimaryButton）</li>
+  </ul>
+</details>
+<details>
+  <summary>2. 需建立 entry file</summary>
+  <p>
+    ```js
+    export { default } from './Component';
+    ```
+  </p>
+</details>
+<summary>3. 元件主要的程式碼</summary>
+<details>
+  <summary>4. Jest 單元測試</summary>
+  <ul>
+    <li>檔名後輟 ***.test.js**</li>
+  </ul>
+</details>
+<details>
+  <summary>5. Storybook stories</summary>
+  <ul>
+    <li>檔名後輟 ***.stories.js**</li>
+    <li>Chromatic 依據此檔做 visual testing</li>
+  </ul>
+</details>
+<details>
+  <summary>6. 最後記得將新增元件加入此 exporting list，否則 `npm run build` 不會有結果</summary>
+  <ul>
+    <li>檔名後輟 ***.stories.js**</li>
+    <li>Chromatic 依據此檔做 visual testing</li>
+  </ul>
+</details>
+<summary>7. 這個專案使用 [nwb](https://github.com/insin/nwb) 這套工具來 build React Component Library</summary>
+<summary>8. CircleCI 配置</summary>
+<summary>9. Storybook 配置</summary>
 
 ### Development
 
