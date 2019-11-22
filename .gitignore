@@ -1,6 +1,6 @@
 
-# Created by https://www.gitignore.io/api/node,macos
-# Edit at https://www.gitignore.io/?templates=node,macos
+# Created by https://www.gitignore.io/api/macos
+# Edit at https://www.gitignore.io/?templates=macos
 
 ### macOS ###
 # General
@@ -29,6 +29,11 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# End of https://www.gitignore.io/api/macos
+
+# Created by https://www.gitignore.io/api/node
+# Edit at https://www.gitignore.io/?templates=node
 
 ### Node ###
 # Logs
@@ -123,5 +128,4 @@ public/
 # DynamoDB Local files
 .dynamodb/
 
-# End of https://www.gitignore.io/api/node,macos
-n
+# End of https://www.gitignore.io/api/node
