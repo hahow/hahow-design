@@ -26,7 +26,6 @@ jobs:
         CI: true
 
   release:
-    name: Release
     needs: build
     runs-on: ubuntu-18.04
     steps:
