@@ -33,8 +33,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-          registry-url: https://npm.pkg.github.com/
-          scope: '@hahow-github-bot'
       - run: npm ci
       - run: npx semantic-release
         env:
