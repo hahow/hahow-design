@@ -34,7 +34,7 @@ jobs:
         with:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
-          scope: '@hahow-github-bot'
+          scope: '@hahow'
       - run: npm ci
       - run: npx semantic-release
         env:
