@@ -1,13 +1,13 @@
 {
   "version": "0.0.0",
   "name": "@hahow/hahow-design",
-  "main": "index.js",
+  "main": "build",
   "repository": "git://github.com/hahow/hahow-design.git",
   "author": "Amo Wu <amo260@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "neutrino build --use @neutrinojs/react-components",
-    "start": "neutrino start --use @neutrinojs/react-components",
+    "build": "neutrino build",
+    "start": "neutrino start",
     "lint": "neutrino lint",
     "test": "neutrino test"
   },
