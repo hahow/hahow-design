@@ -2,6 +2,7 @@
   "version": "0.0.0",
   "name": "@hahow/hahow-design",
   "main": "index.js",
+  "files": ["build"],
   "repository": "git://github.com/hahow/hahow-design.git",
   "author": "Amo Wu <amo260@gmail.com>",
   "license": "MIT",
