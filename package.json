@@ -1,6 +1,7 @@
 {
   "version": "0.0.0",
   "name": "@hahow/hahow-design",
+  "files": ["build"],
   "main": "build",
   "repository": "git://github.com/hahow/hahow-design.git",
   "author": "Amo Wu <amo260@gmail.com>",
