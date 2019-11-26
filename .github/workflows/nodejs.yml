@@ -29,8 +29,11 @@ jobs:
     name: Release
     needs: build
     runs-on: ubuntu-18.04
-    if: github.ref == 'master'
     steps:
+      - name: Dump strategy context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - name: Checkout
         uses: actions/checkout@v1
       - name: Setup Node.js
