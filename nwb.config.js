@@ -2,6 +2,11 @@ module.exports = {
   type: 'react-component',
   npm: {
     esModules: true,
-    umd: false
-  }
-}
+    umd: false,
+  },
+  babel: {
+    plugins: [
+      ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }],
+    ],
+  },
+};
