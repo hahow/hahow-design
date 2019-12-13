@@ -24,8 +24,10 @@
   "dependencies": {
     "antd": "^3.26.0",
     "lodash": "^4.17.15",
+    "pluralize": "^8.0.0",
     "prop-types": "^15.7.2",
     "styled-components": "^4.4.1",
+    "styled-system": "^5.1.4"
   },
   "peerDependencies": {
     "react": "16.x"
