@@ -52,8 +52,5 @@
   "repository": "",
   "keywords": [
     "react-component"
-  ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/hahow"
-  }
+  ]
 }
