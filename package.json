@@ -49,7 +49,7 @@
   "author": "",
   "homepage": "",
   "license": "MIT",
-  "repository": "",
+  "repository": "git://github.com/hahow/hahow-design.git",
   "keywords": [
     "react-component"
   ]
