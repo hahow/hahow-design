@@ -13,6 +13,7 @@ export const Primary = () => (
     block={boolean('block', false)}
     disabled={boolean('disabled', false)}
     icon={select('icon', ['', 'search', 'star'])}
+    iconPos={select('iconPos', ['left', 'right'])}
     size={select('size', [null, 'large'])}
   >
     繼續上課
@@ -24,6 +25,7 @@ export const Secondary = () => (
     brand="secondary"
     disabled={boolean('disabled', false)}
     icon={select('icon', ['', 'search', 'star'])}
+    iconPos={select('iconPos', ['left', 'right'])}
     size={select('size', [null, 'large'])}
   >
     繼續上課
@@ -35,6 +37,7 @@ export const Plain = () => (
     brand={select('brand', ['primary', 'secondary'])}
     disabled={boolean('disabled', false)}
     icon={select('icon', ['', 'search', 'star'])}
+    iconPos={select('iconPos', ['left', 'right'])}
     type="plain"
   >
     繼續上課
@@ -46,6 +49,7 @@ export const Transparent = () => (
     brand={select('brand', ['primary', 'secondary'])}
     disabled={boolean('disabled', false)}
     icon={select('icon', ['', 'search', 'star'])}
+    iconPos={select('iconPos', ['left', 'right'])}
     type="transparent"
   >
     我的教室
@@ -57,6 +61,7 @@ export const WhiteThin = () => (
     brand={select('brand', ['primary', 'secondary'])}
     disabled={boolean('disabled', false)}
     icon={select('icon', ['', 'search', 'star'])}
+    iconPos={select('iconPos', ['left', 'right'])}
     type="whiteThin"
   >
     下次再說
@@ -68,6 +73,7 @@ export const Link = () => (
     brand={select('brand', ['primary', 'secondary'])}
     disabled={boolean('disabled', false)}
     icon={select('icon', ['', 'search', 'star'])}
+    iconPos={select('iconPos', ['left', 'right'])}
     type="link"
   >
     全部下載
