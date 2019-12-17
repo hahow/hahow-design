@@ -35,6 +35,10 @@ const StyledButton = styled(({ brand, size, type, ...rest }) => <BaseButton {...
     width: 180px;
 
 
+    &.ant-btn-block {
+      width: 100%;
+    }
+
     ${variant({
       prop: 'brand',
       variants: {

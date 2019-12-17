@@ -10,6 +10,7 @@ export default {
 
 export const Primary = () => (
   <Button
+    block={boolean('block', false)}
     disabled={boolean('disabled', false)}
     icon={select('icon', ['', 'search', 'star'])}
     size={select('size', [null, 'large'])}
@@ -19,6 +20,7 @@ export const Primary = () => (
 );
 export const Secondary = () => (
   <Button
+    block={boolean('block', false)}
     brand="secondary"
     disabled={boolean('disabled', false)}
     icon={select('icon', ['', 'search', 'star'])}
@@ -29,6 +31,7 @@ export const Secondary = () => (
 );
 export const Plain = () => (
   <Button
+    block={boolean('block', false)}
     brand={select('brand', ['primary', 'secondary'])}
     disabled={boolean('disabled', false)}
     icon={select('icon', ['', 'search', 'star'])}
@@ -39,6 +42,7 @@ export const Plain = () => (
 );
 export const Transparent = () => (
   <Button
+    block={boolean('block', false)}
     brand={select('brand', ['primary', 'secondary'])}
     disabled={boolean('disabled', false)}
     icon={select('icon', ['', 'search', 'star'])}
@@ -49,6 +53,7 @@ export const Transparent = () => (
 );
 export const WhiteThin = () => (
   <Button
+    block={boolean('block', false)}
     brand={select('brand', ['primary', 'secondary'])}
     disabled={boolean('disabled', false)}
     icon={select('icon', ['', 'search', 'star'])}
@@ -59,6 +64,7 @@ export const WhiteThin = () => (
 );
 export const Link = () => (
   <Button
+    block={boolean('block', false)}
     brand={select('brand', ['primary', 'secondary'])}
     disabled={boolean('disabled', false)}
     icon={select('icon', ['', 'search', 'star'])}
