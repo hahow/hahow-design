@@ -1,6 +1,6 @@
 import { Button as BaseButton, Icon } from 'antd';
 import { plural } from 'pluralize';
-import { oneOf } from 'prop-types';
+import { oneOf, string } from 'prop-types';
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { variant } from 'styled-system';
@@ -179,9 +179,12 @@ const StyledButton = styled(({ brand, size, type, ...rest }) => <BaseButton {...
   }
 `;
 
-const Button = ({ children, icon, iconPos, ...rest }) => {
+const Button = ({ children, icon, iconPos, testId, ...rest }) => {
   return (
-    <StyledButton {...rest}>
+    <StyledButton
+      data-test-id={testId}
+      {...rest}
+    >
       {icon && iconPos === 'left' && <Icon type={icon} />}
       {children}
       {icon && iconPos === 'right' && <Icon type={icon} />}
@@ -199,6 +202,7 @@ Button.propTypes = {
   brand: oneOf(Object.values(buttonBrand)),
   iconPos: oneOf(Object.values(buttonIconPos)),
   size: oneOf(Object.values(buttonSize)),
+  testId: string,
   type: oneOf(Object.values(buttonType)),
 };
 
