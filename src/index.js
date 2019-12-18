@@ -1,3 +1,3 @@
-export Button from './Button';
-export SearchList from './SearchList';
-export VideoPlayer from './VideoPlayer';
+export { default as Button} from './Button';
+export { default as SearchList } from './SearchList';
+export { default as VideoPlayer } from './VideoPlayer';
