@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import 'artplayer-react/dist/artplayer-react.css';
 
-const StyledContainer = styled.div`
+const StyledArtplayerComponent = styled(ArtplayerComponent)`
   & .art-subtitle {
     transition: bottom 0.2s ease;
   }
@@ -22,7 +22,7 @@ const StyledContainer = styled.div`
 `;
 
 const VideoPlayer = (props) => (
-  <ArtplayerComponent
+  <StyledArtplayerComponent
     option={props.option}
     style={props.style}
     getInstance={art => {
