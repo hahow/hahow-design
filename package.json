@@ -18,11 +18,12 @@
     "test": "nwb test-react",
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook"
   },
   "dependencies": {
     "antd": "^3.26.0",
+    "artplayer-react": "^3.3.2",
     "lodash": "^4.17.15",
     "pluralize": "^8.0.0",
     "prop-types": "^15.7.2",
