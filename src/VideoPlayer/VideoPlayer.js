@@ -22,61 +22,59 @@ const StyledContainer = styled.div`
 `;
 
 const VideoPlayer = (props) => (
-  <StyledContainer>
-    <ArtplayerComponent
-      option={props.option}
-      style={props.style}
-      getInstance={art => {
-        props.i18n && art.i18n.update(props.i18n);
-  
-        props.onFullscreenWebChange && art.on('fullscreenWebChange', props.onFullscreenWebChange);
-  
-        props.onPlaying && art.on('video:playing', () => {
-          const currentTime = event.target.currentTime;
-          props.onPlaying({ currentTime });
-        });
-        props.onWaiting && art.on('video:waiting', () => {
-          const currentTime = event.target.currentTime;
-          props.onWaiting({ currentTime });
-        });
-        props.onSeeking && art.on('video:seeking', () => {
-          const currentTime = event.target.currentTime;
-          props.onSeeking({ currentTime });
-        });
-        props.onSeeked && art.on('video:seeked', () => {
-          const currentTime = event.target.currentTime;
-          props.onSeeked({ currentTime });
-        });
-        props.onEnded && art.on('video:ended', props.onEnded);
-        props.onLoadedData && art.on('video:loadeddata', props.onLoadedData);
-        art.on('video:canplay', () => {
-          // 恢復上次的播放速度
-          art.player.playbackRate = art.storage.get('playbackRate');
-        });
-        props.onTimeupdate && art.on('video:timeupdate', (event) => {
-          const currentTime = event.target.currentTime;
-          props.onTimeupdate({ currentTime });
-        });
-        props.onPlay && art.on('video:play', () => {
-          const currentTime = event.target.currentTime;
-          props.onPlay({ currentTime });
-        });
-        props.onPause && art.on('video:pause', () => {
-          const currentTime = event.target.currentTime;
-          props.onPause({ currentTime });
-        });
-        
-        props.onSettingToggle && art.on('setting:toggle', props.onSettingToggle);
+  <ArtplayerComponent
+    option={props.option}
+    style={props.style}
+    getInstance={art => {
+      props.i18n && art.i18n.update(props.i18n);
 
-        // 記憶播放速度
-        art.on('playbackRateChange', (rate) => {
-          art.storage.set('playbackRate', rate);
-        });
+      props.onFullscreenWebChange && art.on('fullscreenWebChange', props.onFullscreenWebChange);
 
-        props.getInstance && props.getInstance(art);
-      }}
-    />
-  </StyledContainer>
+      props.onPlaying && art.on('video:playing', () => {
+        const currentTime = event.target.currentTime;
+        props.onPlaying({ currentTime });
+      });
+      props.onWaiting && art.on('video:waiting', () => {
+        const currentTime = event.target.currentTime;
+        props.onWaiting({ currentTime });
+      });
+      props.onSeeking && art.on('video:seeking', () => {
+        const currentTime = event.target.currentTime;
+        props.onSeeking({ currentTime });
+      });
+      props.onSeeked && art.on('video:seeked', () => {
+        const currentTime = event.target.currentTime;
+        props.onSeeked({ currentTime });
+      });
+      props.onEnded && art.on('video:ended', props.onEnded);
+      props.onLoadedData && art.on('video:loadeddata', props.onLoadedData);
+      art.on('video:canplay', () => {
+        // 恢復上次的播放速度
+        art.player.playbackRate = art.storage.get('playbackRate');
+      });
+      props.onTimeupdate && art.on('video:timeupdate', (event) => {
+        const currentTime = event.target.currentTime;
+        props.onTimeupdate({ currentTime });
+      });
+      props.onPlay && art.on('video:play', () => {
+        const currentTime = event.target.currentTime;
+        props.onPlay({ currentTime });
+      });
+      props.onPause && art.on('video:pause', () => {
+        const currentTime = event.target.currentTime;
+        props.onPause({ currentTime });
+      });
+      
+      props.onSettingToggle && art.on('setting:toggle', props.onSettingToggle);
+
+      // 記憶播放速度
+      art.on('playbackRateChange', (rate) => {
+        art.storage.set('playbackRate', rate);
+      });
+
+      props.getInstance && props.getInstance(art);
+    }}
+  />
 );
 
 VideoPlayer.propTypes = {
