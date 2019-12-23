@@ -67,4 +67,4 @@ jobs:
         run: npm ci
       - run: npm run build --if-present
       - name: Deploy to GitHub Page
-        run: npm run deploy-storybook -- --ci
+        run: npm run deploy-storybook
