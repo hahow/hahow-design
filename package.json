@@ -59,5 +59,18 @@
   "repository": "git://github.com/hahow/hahow-design.git",
   "keywords": [
     "react-component"
-  ]
+  ],
+  "babel": {
+    "plugins": [
+      [
+        "import",
+        {
+          "libraryName": "antd",
+          "libraryDirectory": "es",
+          "style": "css"
+        }
+      ],
+      "inline-react-svg"
+    ]
+  }
 }
