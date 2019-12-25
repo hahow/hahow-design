@@ -19,8 +19,7 @@
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
-    "deploy-storybook": "storybook-to-ghpages"
+    "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
     "antd": "^3.26.0",
@@ -47,7 +46,6 @@
     "@storybook/addon-viewport": "^5.2.8",
     "@storybook/addons": "^5.2.8",
     "@storybook/react": "^5.2.8",
-    "@storybook/storybook-deployer": "^2.8.1",
     "babel-loader": "^8.0.6",
     "babel-plugin-import": "^1.13.0",
     "babel-plugin-inline-react-svg": "^0.5.4",
@@ -74,10 +72,5 @@
       ],
       "inline-react-svg"
     ]
-  },
-  "storybook-deployer": {
-    "gitUsername": "hahow-github-bot",
-    "gitEmail": "dev@hahow.in",
-    "commitMessage": "chore: Deploy Storybook [skip ci]"
   }
 }
