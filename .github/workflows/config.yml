@@ -1,8 +1,7 @@
 name: Hahow Design CI/CD
-on: [push, pull_request]
+on: [push]
 jobs:
   build:
-    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -52,14 +51,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-  visual-test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@master
-      - name: Install
-        run: npm i
-      - name: Percy Test
-        uses: percy/storybook-action@v0.1.1
-        env:
-          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+  
