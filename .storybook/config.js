@@ -1,6 +1,10 @@
 import { addParameters, configure } from '@storybook/react';
 
+import theme from './theme';
 addParameters({
+  options: {
+    theme,
+  },
   viewport: {
     viewports: {
       xs: {
