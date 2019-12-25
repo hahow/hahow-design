@@ -7,6 +7,7 @@
 <h3 align="center">Hahow Design</h3>
 
 [![GitHub Actions][build-badge]][build]
+[![GitHub Actions][build-percy-badge]][build-percy]
 [![npm package][npm-badge]][npm]
 [![bundlephobia][bundlephobia-badge]][bundlephobia]
 [![Netlify Status][netlify-badge]][netlify]
@@ -16,6 +17,9 @@ Describe hahow-design here.
 
 [build-badge]: https://github.com/hahow/hahow-design/workflows/Hahow%20Design%20CI%2FCD/badge.svg
 [build]: https://github.com/hahow/hahow-design/actions?query=workflow%3A%22Hahow+Design+CI%2FCD%22
+
+[build-percy-badge]: https://github.com/hahow/hahow-design/workflows/Percy/badge.svg
+[build-percy]: https://github.com/hahow/hahow-design/actions?query=workflow%3A%22Percy%22
 
 [npm-badge]: https://img.shields.io/npm/v/@hahow/hahow-design.png
 [npm]: https://www.npmjs.org/package/npm-package
