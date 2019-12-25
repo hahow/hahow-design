@@ -15,8 +15,8 @@
 
 Describe hahow-design here.
 
-[build-badge]: https://github.com/hahow/hahow-design/workflows/Hahow%20Design%20CI%2FCD/badge.svg
-[build]: https://github.com/hahow/hahow-design/actions?query=workflow%3A%22Hahow+Design+CI%2FCD%22
+[build-badge]: https://github.com/hahow/hahow-design/workflows/CI%2FCD/badge.svg
+[build]: https://github.com/hahow/hahow-design/actions?query=workflow%3A%22CI%2FCD%22
 
 [build-percy-badge]: https://github.com/hahow/hahow-design/workflows/Percy/badge.svg
 [build-percy]: https://github.com/hahow/hahow-design/actions?query=workflow%3A%22Percy%22

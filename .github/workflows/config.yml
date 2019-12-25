@@ -1,4 +1,4 @@
-name: Hahow Design CI/CD
+name: CI/CD
 on: [push]
 jobs:
   build:
