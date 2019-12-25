@@ -6,12 +6,16 @@
 
 <h3 align="center">Hahow Design</h3>
 
+<div align="center">
+
 [![GitHub Actions][build-badge]][build]
 [![GitHub Actions][build-percy-badge]][build-percy]
 [![npm package][npm-badge]][npm]
 [![bundlephobia][bundlephobia-badge]][bundlephobia]
 [![Netlify Status][netlify-badge]][netlify]
 [![This project is using Percy.io for visual regression testing.][percy-badge]][percy]
+
+</div>
 
 Describe hahow-design here.
 
