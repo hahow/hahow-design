@@ -3,7 +3,7 @@ import { boolean, number, object, withKnobs } from '@storybook/addon-knobs';
 import { Empty as AntEmpty, Menu } from 'antd';
 import React from 'react';
 
-import MenuList from '../src/MenuList';
+import { MenuList } from '../src';
 
 const menuListData = [
   {

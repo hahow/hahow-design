@@ -2,7 +2,7 @@ import { action } from '@storybook/addon-actions';
 import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 
-import VideoPlayer from '../src/VideoPlayer';
+import { VideoPlayer } from '../src';
 
 export default {
   title: 'VideoPlayer',

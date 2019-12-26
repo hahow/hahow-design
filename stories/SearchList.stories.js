@@ -3,7 +3,7 @@ import { boolean, number, object, select, withKnobs } from '@storybook/addon-kno
 import { Empty as AntEmpty, Menu } from 'antd';
 import React from 'react';
 
-import SearchList from '../src/SearchList';
+import { SearchList } from '../src';
 
 const data = [
   {

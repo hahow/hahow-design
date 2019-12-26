@@ -1,7 +1,7 @@
 import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 
-import Button from '../src/Button';
+import { Button } from '../src';
 
 export default {
   title: 'Button',
