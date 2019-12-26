@@ -1,10 +1,11 @@
+import { plural } from 'pluralize';
 import { variant } from 'styled-system';
 
 import buttonType from '../../../../constants/buttonType';
 
 const { LINK, PLAIN, TRANSPARENT, WHITE_THIN } = buttonType;
 
-const variantType = variant(({ brand }) => variant({
+const variantType = ({ brand }) => variant({
   prop: 'type',
   variants: {
     [LINK]: {
@@ -78,6 +79,6 @@ const variantType = variant(({ brand }) => variant({
       },
     },
   },
-}));
+});
 
 export default variantType;
