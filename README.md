@@ -4,9 +4,11 @@
   </a>
 </p>
 
-<h3 align="center">Hahow Design</h3>
+<h1 align="center">Hahow Design</h1>
 
 <div align="center">
+
+A [Hahow for Business](https://business.hahow.in) React UI library.
 
 [![GitHub Actions][build-badge]][build]
 [![GitHub Actions][build-percy-badge]][build-percy]
@@ -17,7 +19,45 @@
 
 </div>
 
-Describe hahow-design here.
+## Table of Contents
+
+- [Installation](#Installation)
+- [Usage](#Usage)
+- [Support](#Support)
+- [Contributing](#Contributing)
+- [License](#License)
+
+## Installation
+
+```bash
+npm install @hahow/hahow-design --save
+```
+
+## Usage
+
+```jsx
+import { Button } from '@hahow/hahow-design';
+
+const App = () => (
+  <Button>Click Me</Button>
+);
+```
+
+See more components [https://hahow.design](https://hahow.design)
+
+## Support
+
+Please [open an issue](https://github.com/hahow/hahow-design/issues/new) for support.
+
+## Contributing
+
+Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a branch, add commits, and [open a pull request](https://github.com/hahow/hahow-design/compare/).
+
+See more [CONTRIBUTING](/CONTRIBUTING).
+
+## License
+
+[MIT](/LICENSE) © [Hahow 好學校](https://github.com/hahow/)
 
 [build-badge]: https://github.com/hahow/hahow-design/workflows/CI%2FCD/badge.svg
 [build]: https://github.com/hahow/hahow-design/actions?query=workflow%3A%22CI%2FCD%22
