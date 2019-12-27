@@ -53,11 +53,11 @@ Please [open an issue](https://github.com/hahow/hahow-design/issues/new) for sup
 
 Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a branch, add commits, and [open a pull request](https://github.com/hahow/hahow-design/compare/).
 
-See more [CONTRIBUTING](/CONTRIBUTING).
+See more [CONTRIBUTING](/CONTRIBUTING.md).
 
 ## License
 
-[MIT](/LICENSE) © [Hahow 好學校](https://github.com/hahow/)
+[MIT](/LICENSE) © [Hahow 好學校](https://github.com/hahow/).
 
 [build-badge]: https://github.com/hahow/hahow-design/workflows/CI%2FCD/badge.svg
 [build]: https://github.com/hahow/hahow-design/actions?query=workflow%3A%22CI%2FCD%22
