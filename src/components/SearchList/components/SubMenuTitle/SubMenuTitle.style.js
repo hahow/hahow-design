@@ -25,7 +25,7 @@ export const StyledDescription = styled.div`
   line-height: 1.71;
   margin-top: 3.4px;
 
-  ${props => computeDescriptionColor(props)};
+  ${(props) => computeDescriptionColor(props)};
 `;
 
 export const StyledIcon = styled(Icon)`
@@ -53,5 +53,5 @@ export const StyledTitleText = styled.div`
   font-size: 16px;
   line-height: 1.75;
 
-  ${props => computeTitleColor(props)};
+  ${(props) => computeTitleColor(props)};
 `;

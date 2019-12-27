@@ -14,7 +14,7 @@ const CollapseItemGroup = ({
   const { getCollapseProps, getToggleProps, isOpen } = useCollapse();
 
   const ExpandButton = createElement(renderExpandButton, {
-    toggleProps: getToggleProps()
+    toggleProps: getToggleProps(),
   }, expandButtonText);
 
   return (

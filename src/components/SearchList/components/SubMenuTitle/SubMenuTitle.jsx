@@ -56,6 +56,7 @@ SubMenuTitle.propTypes = {
   })),
   open: bool,
   position: number,
+  theme: string,
   title: string,
 };
 

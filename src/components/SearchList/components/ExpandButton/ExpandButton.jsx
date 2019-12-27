@@ -26,6 +26,7 @@ ExpandButton.propTypes = {
   testId: string,
   className: string,
   children: node,
+  theme: string,
   toggleProps: shape(),
 };
 

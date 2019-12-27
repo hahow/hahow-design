@@ -40,6 +40,7 @@ MenuItem.propTypes = {
   start: number,
   term: string,
   text: string,
+  theme: string,
 };
 
 MenuItem.defaultProps = {

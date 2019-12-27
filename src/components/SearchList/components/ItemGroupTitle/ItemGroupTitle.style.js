@@ -33,7 +33,7 @@ export const StyledDescription = styled.div`
   line-height: 1.71;
   margin-top: 8px;
 
-  ${props => computeDescriptionColor(props)};
+  ${(props) => computeDescriptionColor(props)};
 `;
 
 export const StyledIconContainer = styled.div`
@@ -49,7 +49,7 @@ export const StyledTextContainer = styled.div`
   padding-bottom: 16px;
   width: 100%;
 
-  ${props => computeDivider(props)};
+  ${(props) => computeDivider(props)};
 `;
 
 export const StyledTitleContainer = styled.div`
@@ -57,7 +57,7 @@ export const StyledTitleContainer = styled.div`
   display: flex;
   padding: 16px 24px 0;
 
-  ${props => computeContainerBgColor(props)};
+  ${(props) => computeContainerBgColor(props)};
 
   @media (max-width: 479px) {
     padding: 16px 16px 0;

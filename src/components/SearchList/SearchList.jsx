@@ -1,5 +1,7 @@
 import noop from 'lodash/noop';
-import { arrayOf, bool, func, number, shape, string } from 'prop-types';
+import {
+  arrayOf, bool, func, number, shape, string,
+} from 'prop-types';
 import React, { Fragment, memo, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 
@@ -50,7 +52,7 @@ const SearchList = ({
 
   const totalLesson = data.reduce((total, chapter) => total + chapter.data.length, 0);
 
-  const renderItem = props => (
+  const renderItem = (props) => (
     <MenuItem
       data-test-id="searchlist-item"
       term={term}
@@ -58,7 +60,7 @@ const SearchList = ({
       {...props}
     />
   );
-  const renderItemGroupTitle = props => (
+  const renderItemGroupTitle = (props) => (
     <ItemGroupTitle
       testId="searchlist-group"
       term={term}
@@ -66,13 +68,13 @@ const SearchList = ({
       {...props}
     />
   );
-  const renderSubMenuTitle = props => (
+  const renderSubMenuTitle = (props) => (
     <SubMenuTitle
       theme={theme}
       {...props}
     />
   );
-  const renderExpandButton = props => (
+  const renderExpandButton = (props) => (
     <ExpandButton
       testId="searchlist-expand-button"
       theme={theme}

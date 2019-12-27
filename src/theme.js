@@ -34,9 +34,12 @@ const theme = {
   },
 };
 
-theme.colors.primaries.light = theme.colors.primaries[3];
-theme.colors.primaries.dark = theme.colors.primaries[5];
-theme.colors.secondaries.light = theme.colors.secondaries[0];
-theme.colors.secondaries.dark = theme.colors.secondaries[2];
+const [,,, primaryLight,, promaryDark] = theme.colors.primaries;
+const [secondaryLight,, secondaryDark] = theme.colors.secondaries;
+
+theme.colors.primaries.light = primaryLight;
+theme.colors.primaries.dark = promaryDark;
+theme.colors.secondaries.light = secondaryLight;
+theme.colors.secondaries.dark = secondaryDark;
 
 export default theme;

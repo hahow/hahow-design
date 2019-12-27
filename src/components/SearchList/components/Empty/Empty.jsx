@@ -40,6 +40,7 @@ Empty.propTypes = {
   icon: string,
   opacity: number,
   subTitle: string,
+  theme: string,
   title: string,
 };
 

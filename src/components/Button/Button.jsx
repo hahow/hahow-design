@@ -14,7 +14,9 @@ import variantType from './utils/variantType';
 
 const { LEFT, RIGHT } = buttonIconPos;
 
-const StyledButton = styled(({ brand, size, type, ...rest }) => <BaseButton {...rest} />)`
+const StyledButton = styled(({
+  brand, size, type, ...rest
+}) => <BaseButton {...rest} />)`
   &.ant-btn {
     align-items: center;
     border-radius: 20px;
@@ -46,15 +48,15 @@ const StyledButton = styled(({ brand, size, type, ...rest }) => <BaseButton {...
   }
 `;
 
-const Button = ({ children, icon, iconPos, testId, ...rest }) => {
-  return (
-    <StyledButton data-test-id={testId} {...rest}>
-      {icon && iconPos === LEFT && <Icon type={icon} />}
-      {children}
-      {icon && iconPos === RIGHT && <Icon type={icon} />}
-    </StyledButton>
-  );
-};
+const Button = ({
+  children, icon, iconPos, testId, ...rest
+}) => (
+  <StyledButton data-test-id={testId} {...rest}>
+    {icon && iconPos === LEFT && <Icon type={icon} />}
+    {children}
+    {icon && iconPos === RIGHT && <Icon type={icon} />}
+  </StyledButton>
+);
 
 const ThemedButton = (props) => (
   <ThemeProvider theme={theme}>
@@ -73,6 +75,9 @@ Button.propTypes = {
 Button.defaultProps = {
   brand: buttonBrand.PRIMARY,
   iconPos: buttonIconPos.LEFT,
+  size: null,
+  testId: null,
+  type: null,
 };
 
 export default ThemedButton;

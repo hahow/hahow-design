@@ -3,7 +3,9 @@ import drop from 'lodash/drop';
 import includes from 'lodash/includes';
 import noop from 'lodash/noop';
 import take from 'lodash/take';
-import { arrayOf, elementType, func, number, shape, string, bool } from 'prop-types';
+import {
+  arrayOf, elementType, func, number, shape, string, bool,
+} from 'prop-types';
 import React, { createElement, memo } from 'react';
 import stylePropType from 'react-style-proptype';
 
@@ -96,16 +98,18 @@ const MenuList = ({
 
                   const showItemGroupTitleDivider = (itemData.length > 0);
 
-                  const handleItemGroupTitleClick = event => onItemGroupTitleClick(event, groupItem);
+                  const handleItemGroupTitleClick = (event) => onItemGroupTitleClick(
+                    event, groupItem,
+                  );
 
                   const buildRenderItem = (item, itemIndex) => {
                     const itemKey = buildItemKey(groupKey, itemIndex);
-                    const handleItemClick = event => onItemClick(event, item);
+                    const handleItemClick = (event) => onItemClick(event, item);
 
                     return createElement(renderItem, {
                       key: itemKey,
                       onClick: handleItemClick,
-                      ...item
+                      ...item,
                     });
                   };
 
@@ -134,7 +138,9 @@ const MenuList = ({
                             renderExpandButton={renderExpandButton}
                           >
                             {
-                              collapseData.map((item, idx) => buildRenderItem(item, idx + numOfShowItems))
+                              collapseData.map(
+                                (item, idx) => buildRenderItem(item, idx + numOfShowItems),
+                              )
                             }
                           </CollapseItemGroup>
                         )

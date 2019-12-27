@@ -71,6 +71,7 @@ ItemGroupTitle.propTypes = {
   position: number,
   showDivider: bool,
   term: string,
+  theme: string,
   title: string,
   videoLengthInSeconds: number,
 };

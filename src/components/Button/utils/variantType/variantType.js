@@ -3,7 +3,9 @@ import { variant } from 'styled-system';
 
 import buttonType from '../../../../constants/buttonType';
 
-const { LINK, PLAIN, TRANSPARENT, WHITE_THIN } = buttonType;
+const {
+  LINK, PLAIN, TRANSPARENT, WHITE_THIN,
+} = buttonType;
 
 const variantType = ({ brand }) => variant({
   prop: 'type',
