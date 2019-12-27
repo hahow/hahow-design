@@ -17,7 +17,7 @@
     "lint": "eslint src",
     "prepublishOnly": "npm run build",
     "snapshot": "build-storybook && percy-storybook",
-    "start": "nwb serve-react-demo",
+    "start": "npm run storybook",
     "storybook": "start-storybook -p 6006 -s public",
     "test": ""
   },
