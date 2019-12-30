@@ -13,6 +13,8 @@ import { StyledRateButton } from './Rate.style';
  *
  * 1. 啟用 `allowHalf` 之後，`defaultValue` 能夠支援任何精度的小數點，例如：`2.75`（原本只能 `2.5`）
  * 2. 新增樣式相關的 `props`：`size`、`firstColor`、`secondColor` 和 `gutter`
+ *
+ * 設計稿 https://zpl.io/V153P9Q
  */
 const Rate = (props) => <StyledRateButton {...props} />;
 
