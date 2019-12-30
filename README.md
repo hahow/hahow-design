@@ -43,7 +43,7 @@ const App = () => (
 );
 ```
 
-See more components [https://hahow.design](https://hahow.design)
+See more components [https://hahow.design](https://hahow.design).
 
 ## Support
 
@@ -57,7 +57,7 @@ See more [CONTRIBUTING](/CONTRIBUTING.md).
 
 ## License
 
-[MIT](/LICENSE) © [Hahow 好學校](https://github.com/hahow/).
+[MIT](/LICENSE) © [Hahow 好學校](https://github.com/hahow/)
 
 [build-badge]: https://github.com/hahow/hahow-design/workflows/CI%2FCD/badge.svg
 [build]: https://github.com/hahow/hahow-design/actions?query=workflow%3A%22CI%2FCD%22
