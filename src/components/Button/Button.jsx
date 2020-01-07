@@ -1,57 +1,17 @@
-import { Button as BaseButton, Icon } from 'antd';
-import { bool, func, number, oneOf, oneOfType, shape, string } from 'prop-types';
+import { Icon } from 'antd';
+import {
+  bool, func, node, number, oneOf, oneOfType, shape, string,
+} from 'prop-types';
 import React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 
-import buttonBrand from '../../constants/buttonBrand';
-import buttonIconPos from '../../constants/buttonIconPos';
-import buttonSize from '../../constants/buttonSize';
-import buttonType from '../../constants/buttonType';
 import theme from '../../theme';
-import variantBrand from './utils/variantBrand';
-import variantSize from './utils/variantSize';
-import variantType from './utils/variantType';
-
-const { LEFT, RIGHT } = buttonIconPos;
-
-const StyledButton = styled(({
-  brand, size, type, ...rest
-}) => <BaseButton {...rest} />)`
-  &.ant-btn {
-    align-items: center;
-    border-radius: 20px;
-    border: none;
-    display: flex;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-    font-size: 16px;
-    font-weight: 500;
-    height: 40px;
-    justify-content: center;
-    line-height: 1.5;
-    width: 180px;
-
-    .anticon {
-      display: flex;
-    }
-
-    > .anticon + span, > span + .anticon {
-      margin-left: 4px;
-    }
-
-    &.ant-btn-block {
-      width: 100%;
-    }
-
-    ${variantBrand}
-    ${variantType}
-    ${variantSize}
-  }
-`;
+import { StyledButton } from './Button.style';
 
 /**
  * 按鈕元件，封裝自 [Ant Design](https://ant.design/) 的 [Button](https://ant.design/components/button/) 元件。
  *
- * `props` 在 Ant Design Button 的基礎上，增加了下列改動：
+ * 在 Ant Design Button 的 `props` 基礎上，增加了下列改動：
  *
  * 1. 將原先 `type` 的樣式改成透過新增的 `brand` 和 `type` 兩個維度來設定，保持樣式的彈性
  * 2. 新增 `iconPos` 讓圖示可以顯示在右方
@@ -62,13 +22,28 @@ const StyledButton = styled(({
  * 設計稿 https://zpl.io/2yWdMPK
  */
 const Button = ({
-  children, ghost, icon, iconPos, shape, testId, ...rest
+  // 以下為 antd/Button 原生 props
+  block, brand, disabled, href, htmlType, loading, onClick, size, target, type,
+  // 以下為另外處理的 props
+  children, icon, iconPos, testId,
 }) => (
   <ThemeProvider theme={theme}>
-    <StyledButton data-test-id={testId} {...rest}>
-      {icon && iconPos === LEFT && <Icon type={icon} />}
+    <StyledButton
+      block={block}
+      brand={brand}
+      data-test-id={testId}
+      disabled={disabled}
+      href={href}
+      htmlType={htmlType}
+      loading={loading}
+      onClick={onClick}
+      size={size}
+      target={target}
+      type={type}
+    >
+      {icon && iconPos === 'left' && <Icon type={icon} />}
       {children}
-      {icon && iconPos === RIGHT && <Icon type={icon} />}
+      {icon && iconPos === 'right' && <Icon type={icon} />}
     </StyledButton>
   </ThemeProvider>
 );
@@ -76,8 +51,10 @@ const Button = ({
 Button.propTypes = {
   /** 將按鈕寬度調整為其 parent 寬度的選項 */
   block: bool,
-  /** */
+  /** 品牌色 */
   brand: oneOf(['primary', 'secondary']),
+  /** 按鈕內容  */
+  children: node,
   /** 按鈕失效狀態 */
   disabled: bool,
   /** 點擊跳轉的位址，指定此屬性 `button` 的行為和 `a` 連結一致 */
@@ -86,7 +63,7 @@ Button.propTypes = {
   htmlType: string,
   /** 設置按鈕的圖示類型 */
   icon: string,
-  /** */
+  /** 圖示的顯示位置，屬性 `icon` 存在時生效 */
   iconPos: oneOf(['left', 'right']),
   /** 設置按鈕讀取狀態 */
   loading: oneOfType([bool, shape({ delay: number })]),
@@ -96,19 +73,27 @@ Button.propTypes = {
   size: oneOf(['default', 'large']),
   /** 相當於 `a` 連結的 `target` 屬性，`href` 存在時生效 */
   target: string,
+  /** 生成 [data-test-id] attribute 方便測試用 */
   testId: string,
-  /**  */
+  /** 按鈕的種類 */
   type: oneOf([null, 'link', 'plain', 'transparent', 'whiteThin']),
 };
 
 Button.defaultProps = {
   block: false,
   brand: 'primary',
+  children: null,
   disabled: false,
+  href: null,
   htmlType: 'button',
+  icon: null,
   iconPos: 'left',
   loading: false,
+  onClick: null,
   size: 'default',
+  target: null,
+  testId: null,
+  type: null,
 };
 
 export default Button;

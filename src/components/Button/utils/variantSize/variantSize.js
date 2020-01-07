@@ -1,11 +1,9 @@
 import { variant } from 'styled-system';
 
-import buttonSize from '../../../../constants/buttonSize';
-
 const variantSize = variant({
   prop: 'size',
   variants: {
-    [buttonSize.LARGE]: {
+    large: {
       fontSize: '20px',
       lineHeight: 1.6,
       borderRadius: '24px',

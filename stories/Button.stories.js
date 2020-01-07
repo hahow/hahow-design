@@ -11,19 +11,7 @@ export default {
 };
 
 export const Primary = () => (
-  <Button
-    block={boolean('block', false)}
-    brand={select('brand', ['primary', 'secondary'])}
-    disabled={boolean('disabled', false)}
-    href={text('href')}
-    htmlType={text('htmlType', 'button')}
-    icon={select('icon', [null, 'search', 'star'])}
-    iconPos={select('iconPos', ['left', 'right'])}
-    loading={boolean('loading', false)}
-    onClick={action('onClick')}
-    size={select('size', ['default', 'large'])}
-    type={select('type', [null, 'link', 'plain', 'transparent', 'whiteThin'])}
-  >
+  <Button>
     繼續上課
   </Button>
 );
@@ -52,3 +40,43 @@ export const Link = () => (
     全部下載
   </Button>
 );
+export const Playground = () => {
+  const block = boolean('block', true);
+  const brand = select('brand', ['primary', 'secondary']);
+  const disabled = boolean('disabled', false);
+  const href = text('href');
+  const htmlType = text('htmlType', 'button');
+  const icon = select('icon', [null, 'search', 'star'], 'star');
+  const iconPos = select('iconPos', ['left', 'right']);
+  const loading = boolean('loading', false);
+  const onClick = action('onClick');
+  const size = select('size', ['default', 'large'], 'large');
+  const testId = text('testId', '');
+  const type = select('type', [null, 'link', 'plain', 'transparent', 'whiteThin']);
+
+  return (
+    <Button
+      block={block}
+      brand={brand}
+      disabled={disabled}
+      href={href}
+      htmlType={htmlType}
+      icon={icon}
+      iconPos={iconPos}
+      loading={loading}
+      onClick={onClick}
+      size={size}
+      testId={testId}
+      type={type}
+    >
+      繼續上課
+    </Button>
+  );
+};
+Playground.story = {
+  parameters: {
+    docs: {
+      storyDescription: '切換至 **Canvas** tab 即可透過 **Knobs** 調整 `props`，以及 **Actions** 查看 callback function 的 payload',
+    },
+  },
+};

@@ -1,13 +1,9 @@
 import { variant } from 'styled-system';
 
-import buttonBrand from '../../../../constants/buttonBrand';
-
-const { PRIMARY, SECONDARY } = buttonBrand;
-
 const variantBrand = variant({
   prop: 'brand',
   variants: {
-    [PRIMARY]: {
+    primary: {
       backgroundColor: 'primary',
       color: 'white',
       '&:hover': {
@@ -25,7 +21,7 @@ const variantBrand = variant({
         borderWidth: '1px',
       },
     },
-    [SECONDARY]: {
+    secondary: {
       backgroundColor: 'secondary',
       color: 'white',
       '&:hover': {
