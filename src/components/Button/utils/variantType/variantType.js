@@ -59,7 +59,7 @@ const variantType = ({ brand }) => variant({
         color: `${plural(brand)}.dark`,
       },
     },
-    white: {
+    whiteThin: {
       backgroundColor: 'white',
       border: 'solid 1px rgba(0, 0, 0, 0.15)',
       color: 'rgba(0, 0, 0, 0.45)',
