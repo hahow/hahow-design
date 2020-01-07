@@ -7,4 +7,9 @@ module.exports = {
     umd: false,
   },
   babel,
+  webpack: {
+    extra: {
+      extensions: ['.js', '.jsx'],
+    },
+  },
 };

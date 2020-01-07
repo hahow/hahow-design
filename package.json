@@ -14,7 +14,7 @@
     "build-storybook": "build-storybook -s public",
     "build": "nwb build-react-component --no-demo",
     "clean": "nwb clean-module && nwb clean-demo",
-    "lint": "eslint src",
+    "lint": "eslint --ext js,jsx src",
     "prepublishOnly": "npm run build",
     "snapshot": "build-storybook && percy-storybook",
     "start": "npm run storybook",
