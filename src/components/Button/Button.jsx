@@ -84,7 +84,7 @@ Button.defaultProps = {
   brand: 'primary',
   children: null,
   disabled: false,
-  href: null,
+  href: undefined,
   htmlType: 'button',
   icon: null,
   iconPos: 'left',
