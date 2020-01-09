@@ -20,6 +20,12 @@ import { StyledButton } from './Button.style';
  * 5. `size` 移除 `"small"` 的選項，如果日後 styleguide 有需要再實作
  *
  * 設計稿 https://zpl.io/2yWdMPK
+ *
+ * ### Usage
+ *
+ * ```js
+ * import { Button } from '@hahow/hahow-design';
+ * ```
  */
 const Button = ({
   // 以下為 antd/Button 原生 props
