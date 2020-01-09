@@ -19,6 +19,7 @@ const variantBrand = variant({
         borderColor: 'blacks.3',
         borderStyle: 'solid',
         borderWidth: '1px',
+        color: 'rgba(0, 0, 0, 0.25)',
       },
     },
     secondary: {
@@ -31,6 +32,13 @@ const variantBrand = variant({
       '&:active, &:focus': {
         backgroundColor: 'secondaries.dark',
         color: 'white',
+      },
+      '&[disabled], &[disabled]:hover': {
+        backgroundColor: 'blacks.2',
+        borderColor: 'blacks.3',
+        borderStyle: 'solid',
+        borderWidth: '1px',
+        color: 'rgba(0, 0, 0, 0.25)',
       },
     },
   },
