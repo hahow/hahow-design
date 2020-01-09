@@ -23,7 +23,7 @@ import { StyledButton } from './Button.style';
  */
 const Button = ({
   // 以下為 antd/Button 原生 props
-  block, brand, disabled, href, htmlType, loading, onClick, size, target, type,
+  block, brand, className, disabled, href, htmlType, loading, onClick, size, target, type,
   // 以下為另外處理的 props
   children, icon, iconPos, testId,
 }) => (
@@ -31,6 +31,7 @@ const Button = ({
     <StyledButton
       block={block}
       brand={brand}
+      className={className}
       data-test-id={testId}
       disabled={disabled}
       href={href}
@@ -55,6 +56,8 @@ Button.propTypes = {
   brand: oneOf(['primary', 'secondary']),
   /** 按鈕內容  */
   children: node,
+  /** 另外套用樣式 class */
+  className: string,
   /** 按鈕失效狀態 */
   disabled: bool,
   /** 點擊跳轉的位址，指定此屬性 `button` 的行為和 `a` 連結一致 */
@@ -83,6 +86,7 @@ Button.defaultProps = {
   block: false,
   brand: 'primary',
   children: null,
+  className: null,
   disabled: false,
   href: undefined,
   htmlType: 'button',
