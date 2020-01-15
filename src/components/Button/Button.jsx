@@ -25,6 +25,10 @@ import { StyledButton } from './Button.style';
  *
  * ```js
  * import { Button } from '@hahow/hahow-design';
+ *
+ * const App = () => (
+ *   <Button>繼續上課</Button>
+ * );
  * ```
  */
 const Button = ({
