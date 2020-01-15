@@ -10,7 +10,7 @@ export const StyledButton = styled(Button)`
     align-items: center;
     border-radius: 20px;
     border: none;
-    display: flex;
+    display: inline-flex;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     font-size: 16px;
     font-weight: 500;
