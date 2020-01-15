@@ -87,11 +87,12 @@ const data = [
 ];
 
 export default {
-  title: 'SearchList',
+  component: SearchList,
   decorators: [withKnobs],
+  title: 'SearchList',
 };
 
-export const DarkTheme = () => (
+export const Basic = () => (
   <SearchList
     data={object('data', data)}
     onItemClick={action('onItemClick')}
@@ -100,12 +101,12 @@ export const DarkTheme = () => (
   />
 );
 
-export const LightTheme = () => (
+export const DarkTheme = () => (
   <SearchList
     data={object('data', data)}
     onItemClick={action('onItemClick')}
     onLessonTitleClick={action('onLessonTitleClick')}
     onSearch={action('onSearch')}
-    theme="light"
+    theme="dark"
   />
 );

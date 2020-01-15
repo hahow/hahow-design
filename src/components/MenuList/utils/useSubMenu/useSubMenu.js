@@ -15,7 +15,7 @@ const useSubMenu = ({ data, openAllSubMenu }) => {
     } else if (openAllSubMenu === false) {
       setOpenKeys([]);
     }
-  }, [openAllSubMenu]);
+  }, [defaultOpenKeys, openAllSubMenu]);
 
   return [openKeys, setOpenKeys];
 };

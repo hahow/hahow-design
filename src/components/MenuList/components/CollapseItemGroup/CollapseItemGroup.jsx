@@ -6,10 +6,8 @@ import useCollapse from 'react-collapsed';
 import { StyledCollapseItemGroup } from './CollapseItemGroup.style';
 
 const CollapseItemGroup = ({
-  children,
-  expandButtonText,
-  renderExpandButton,
-  ...props
+  expandButtonText, renderExpandButton,
+  children, ...props
 }) => {
   const { getCollapseProps, getToggleProps, isOpen } = useCollapse();
 
@@ -18,8 +16,12 @@ const CollapseItemGroup = ({
   }, expandButtonText);
 
   return (
-    <Fragment>
-      <StyledCollapseItemGroup collapseProps={getCollapseProps()} {...props}>
+    <Fragment key="collapse-item-group">
+      <StyledCollapseItemGroup
+        collapseProps={getCollapseProps()}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...props}
+      >
         {children}
       </StyledCollapseItemGroup>
       {

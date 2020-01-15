@@ -1,12 +1,11 @@
 import { Menu } from 'antd';
 import drop from 'lodash/drop';
 import includes from 'lodash/includes';
-import noop from 'lodash/noop';
 import take from 'lodash/take';
 import {
   arrayOf, elementType, func, number, shape, string, bool,
 } from 'prop-types';
-import React, { createElement, memo } from 'react';
+import React, { createElement } from 'react';
 import stylePropType from 'react-style-proptype';
 
 import CollapseItemGroup from './components/CollapseItemGroup';
@@ -17,47 +16,77 @@ import SubMenuTitle from './components/SubMenuTitle';
 import buildItemGroupKey from './utils/buildItemGroupKey';
 import buildItemKey from './utils/buildItemKey';
 import buildSubMenuKey from './utils/buildSubMenuKey';
+import getExpandButtonText from './utils/getExpandButtonText';
 import truncate from './utils/truncate';
 import useSubMenu from './utils/useSubMenu';
 import {
-  StyledEmptyContainer,
-  StyledItemGroup,
-  StyledMenu,
+  StyledEmptyContainer, StyledItemGroup, StyledMenu,
 } from './MenuList.style';
 
 const { SubMenu } = Menu;
 
+/**
+ * 封裝自 [Ant Design](https://ant.design/) 的 [Menu](https://ant.design/components/menu/) 元件。提供高自訂彈性的資料驅動選單元件。
+ *
+ * ### Usage
+ *
+ * 參考以下範例：
+ *
+ * ```js
+ * import { MenuList } from '@hahow/hahow-design';
+ *
+ * const DATA = [
+ *   {
+ *     title: '章節 1',
+ *     data: [
+ *       {
+ *         title: '單元 1',
+ *         data: [
+ *           { text: '選項 1' },
+ *           { text: '選項 2' },
+ *         ],
+ *       },
+ *     ],
+ *   },
+ * ];
+ *
+ * const App = () => (
+ *   <MenuList data={DATA} />;
+ * );
+ * ```
+ *
+ * Render 結構如下：
+ *
+ * ```jsx
+ * <Menu>
+ *   <SubMenu title="章節 1">
+ *     <Menu.ItemGroup title="單元 1">
+ *       <Menu.Item>選項 1</Menu.Item>
+ *       <Menu.Item>選項 2</Menu.Item>
+ *     </Menu.ItemGroup>
+ *   </SubMenu>
+ * </Menu>
+ * ```
+ */
 const MenuList = ({
-  data,
-  expandButtonText,
-  itemGroupContainerStyle,
-  itemGroupDividerStyle,
-  itemGroupListStyle,
-  menuStyle,
-  numOfShowItems,
-  onItemClick,
-  onItemGroupTitleClick,
-  openAllSubMenu,
-  renderEmpty,
-  renderExpandButton,
-  renderItem,
-  renderItemGroupTitle,
-  renderSubMenuTitle,
-  subMenuStyle,
+  data, expandButtonText, itemGroupContainerStyle, itemGroupDividerStyle, itemGroupListStyle,
+  menuStyle, numOfShowItems, onItemClick, onItemGroupTitleClick, openAllSubMenu, renderEmpty,
+  renderExpandButton, renderItem, renderItemGroupTitle, renderSubMenuTitle, subMenuStyle,
+  truncateOptions,
 }) => {
   const [openKeys, setOpenKeys] = useSubMenu({ data, openAllSubMenu });
 
   if (data.length === 0) {
     return (
       <StyledEmptyContainer>
-        {createElement(renderEmpty)}
+        {renderEmpty && createElement(renderEmpty)}
       </StyledEmptyContainer>
     );
   }
 
   return (
     <StyledMenu
-      // Orginal props from Menu
+      // Orginal props for Ant Design Menu
       inlineIndent={0} // Reset antd 的 Menu padding & margin
       mode="inline"
       onOpenChange={setOpenKeys}
@@ -69,8 +98,8 @@ const MenuList = ({
       subMenuStyle={subMenuStyle}
     >
       {
-        data.map((subMenuItem, index) => {
-          const subMenuKey = buildSubMenuKey(index);
+        data.map((subMenuItem, subMenuIndex) => {
+          const subMenuKey = buildSubMenuKey(subMenuIndex);
           const subMenuTitle = createElement(renderSubMenuTitle, {
             open: includes(openKeys, subMenuKey), // SubMenu 的開合狀態
             ...subMenuItem,
@@ -83,28 +112,30 @@ const MenuList = ({
             >
               {
                 subMenuItem.data.map((groupItem, groupIndex) => {
-                  const groupKey = buildItemGroupKey(subMenuKey, groupIndex);
-
                   const { data: itemData } = groupItem;
 
+                  // 處理收合的 items
                   const collapseData = drop(itemData, numOfShowItems);
                   const collapseLength = collapseData.length;
-
-                  const truncatedCollapseLength = truncate(collapseLength, { length: 99, omission: '+' });
-
-                  const formatedExpandButtonText = expandButtonText
-                    ? expandButtonText(truncatedCollapseLength)
-                    : `+ 展開 ${collapseLength} 段相關內容`;
+                  // 預設收合數量超過 99 顯示 '99+'
+                  const truncatedCollapseLength = truncate(collapseLength, truncateOptions);
+                  const formatedExpandButtonText = expandButtonText(truncatedCollapseLength);
 
                   const showItemGroupTitleDivider = (itemData.length > 0);
 
-                  const handleItemGroupTitleClick = (event) => onItemGroupTitleClick(
-                    event, groupItem,
-                  );
+                  const handleItemGroupTitleClick = (event) => onItemGroupTitleClick
+                    && onItemGroupTitleClick(event, groupItem);
+
+                  const groupKey = buildItemGroupKey(subMenuKey, groupIndex);
+                  const groupTitle = createElement(renderItemGroupTitle, {
+                    ...groupItem,
+                    onClick: handleItemGroupTitleClick,
+                    showDivider: showItemGroupTitleDivider,
+                  });
 
                   const buildRenderItem = (item, itemIndex) => {
                     const itemKey = buildItemKey(groupKey, itemIndex);
-                    const handleItemClick = (event) => onItemClick(event, item);
+                    const handleItemClick = (event) => onItemClick && onItemClick(event, item);
 
                     return createElement(renderItem, {
                       key: itemKey,
@@ -112,12 +143,6 @@ const MenuList = ({
                       ...item,
                     });
                   };
-
-                  const groupTitle = createElement(renderItemGroupTitle, {
-                    ...groupItem,
-                    onClick: handleItemGroupTitleClick,
-                    showDivider: showItemGroupTitleDivider,
-                  });
 
                   return (
                     <StyledItemGroup
@@ -158,24 +183,21 @@ const MenuList = ({
 };
 
 MenuList.propTypes = {
-  /** 顯示多少數量的 items（其餘收合） */
-  numOfShowItems: number,
-  /** Menu 的資料來源 */
+  /** Menu 列表的資料來源 */
   data: arrayOf(shape({
     /** Menu.SubMenu 的 title */
     title: string,
-    /** Menu.ItemGroup 的資料來源 */
+    /** Menu.ItemGroup 列表的資料來源 */
     data: arrayOf(shape({
       /** Menu.ItemGroup 的 title */
       title: string,
-      /** Menu.Item 的資料來源 */
+      /** Menu.Item 列表的資料來源 */
       data: arrayOf(shape).isRequired,
     })).isRequired,
   })).isRequired,
   /**
    * 展開按鈕的文字
-   * 注意：類型是函數，第一個參數是被收合的 items 數量
-   * 預設文字為 "+ 展開 {{collapseLength}} 段相關內容"
+   * 第一個參數為收合的數量
    */
   expandButtonText: func,
   /** 自訂 Menu.ItemGroup 的 style */
@@ -186,22 +208,21 @@ MenuList.propTypes = {
   itemGroupListStyle: stylePropType,
   /** 自訂 Menu 的 style */
   menuStyle: stylePropType,
+  /** 顯示多少數量的 items（其餘收合） */
+  numOfShowItems: number,
   /**
    * Menu.Item onClick callback
-   * 第一個參數為 Menu.Item 預設的 event object
+   * 第一個參數為 Menu.Item 原本的 event object
    * 第二個參數為 Item 的 data object
    */
   onItemClick: func,
   /**
    * Menu.ItemGroup title onClick callback
-   * 第一個參數為 onClick 預設的 event
+   * 第一個參數為 onClick 原本的 event object
    * 第二個參數為 ItemGroup 的 data object
    */
   onItemGroupTitleClick: func,
-  /**
-   * 當 openAllSubMenu 變為 true，則打開所有 SubMenu
-   * 當變為 false，則關閉所有 SubMenu
-   */
+  /** 使否展開所有 SubMenu */
   openAllSubMenu: bool,
   /** 自訂空資料元件 */
   renderEmpty: elementType,
@@ -227,24 +248,32 @@ MenuList.propTypes = {
   renderSubMenuTitle: elementType,
   /** 自訂 Menu.SubMenu 的 style */
   subMenuStyle: stylePropType,
+  /** 超過指定數量顯示特定字串，例如：99+ */
+  truncateOptions: shape({
+    /** 超過的數量，例如：99 */
+    lenght: number,
+    /** 顯示的符號，例如：'+' */
+    omission: string,
+  }),
 };
 
 MenuList.defaultProps = {
-  expandButtonText: undefined,
-  itemGroupContainerStyle: {},
-  itemGroupDividerStyle: {},
-  itemGroupListStyle: {},
-  menuStyle: {},
+  expandButtonText: getExpandButtonText,
+  itemGroupContainerStyle: null,
+  itemGroupDividerStyle: null,
+  itemGroupListStyle: null,
+  menuStyle: null,
   numOfShowItems: 3,
-  onItemClick: noop,
-  onItemGroupTitleClick: noop,
+  onItemClick: null,
+  onItemGroupTitleClick: null,
   openAllSubMenu: true,
-  renderEmpty: noop,
+  renderEmpty: null,
   renderExpandButton: ExpandButton,
   renderItem: MenuItem,
   renderItemGroupTitle: ItemGroupTitle,
   renderSubMenuTitle: SubMenuTitle,
-  subMenuStyle: {},
+  subMenuStyle: null,
+  truncateOptions: { length: 99, omission: '+' },
 };
 
-export default memo(MenuList);
+export default MenuList;

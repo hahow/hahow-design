@@ -3,12 +3,19 @@ import styled from 'styled-components';
 import React from 'react';
 
 export const StyledMenu = styled(({
-  children,
-  itemGroupListStyle,
-  menuStyle,
-  subMenuStyle,
-  ...rest
-}) => <Menu {...rest}>{children}</Menu>)`
+  className, children, inlineIndent, mode, onOpenChange, openKeys, selectable,
+}) => (
+  <Menu
+    className={className}
+    inlineIndent={inlineIndent}
+    mode={mode}
+    onOpenChange={onOpenChange}
+    openKeys={openKeys}
+    selectable={selectable}
+  >
+    {children}
+  </Menu>
+))`
   &.ant-menu {
     /** 移除 Menu 預設樣式 */
     border-width: 0;
@@ -66,7 +73,14 @@ export const StyledItemGroup = styled(({
   itemGroupContainerStyle,
   itemGroupDividerStyle,
   ...rest
-}) => <Menu.ItemGroup {...rest}>{children}</Menu.ItemGroup>)`
+}) => (
+  <Menu.ItemGroup
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    {...rest}
+  >
+    {children}
+  </Menu.ItemGroup>
+))`
   ${({ itemGroupContainerStyle }) => ({ ...itemGroupContainerStyle })};
 
   :not(:last-child) {

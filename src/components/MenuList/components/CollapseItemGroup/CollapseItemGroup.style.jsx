@@ -3,11 +3,15 @@ import styled from 'styled-components';
 import React from 'react';
 
 export const StyledCollapseItemGroup = styled(({
-  children,
   collapseProps,
-  ...rest
+  children, ...rest
 }) => (
-  <Menu.ItemGroup {...rest} {...collapseProps}>
+  <Menu.ItemGroup
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    {...rest}
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    {...collapseProps}
+  >
     {children}
   </Menu.ItemGroup>
 ))`

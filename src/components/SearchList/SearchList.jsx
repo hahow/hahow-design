@@ -1,6 +1,6 @@
 import noop from 'lodash/noop';
 import {
-  arrayOf, bool, func, number, shape, string,
+  arrayOf, bool, func, number, oneOf, shape, string,
 } from 'prop-types';
 import React, { Fragment, memo, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
@@ -84,7 +84,7 @@ const SearchList = ({
 
   return (
     <ThemeProvider theme={{ theme }}>
-      <Fragment>
+      <Fragment key="search-list">
         <StyledInputWrapper>
           <StyledSearch
             data-test-id="searchlist-input"
@@ -116,7 +116,7 @@ const SearchList = ({
           }
           {
             showList && (
-              <Fragment>
+              <Fragment key="search-result-list">
                 <StyledResultWrapper>
                   {`共 ${totalLesson} 個單元與「${term}」相關`}
                 </StyledResultWrapper>
@@ -166,7 +166,7 @@ SearchList.propTypes = {
   onItemClick: func,
   onLessonTitleClick: func,
   onSearch: func,
-  theme: string,
+  theme: oneOf(['dark', 'light']),
 };
 
 SearchList.defaultProps = {
@@ -174,7 +174,7 @@ SearchList.defaultProps = {
   onItemClick: noop,
   onLessonTitleClick: noop,
   onSearch: noop,
-  theme: 'dark',
+  theme: 'light',
 };
 
-export default memo(SearchList);
+export default SearchList;

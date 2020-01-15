@@ -5,7 +5,7 @@ import React from 'react';
 
 import { MenuList } from '../src';
 
-const menuListData = [
+const DATA = [
   {
     title: '我是 SubMenu 1',
     data: [
@@ -70,24 +70,22 @@ const menuListData = [
 ];
 
 export default {
-  title: 'MenuList',
+  component: MenuList,
   decorators: [withKnobs],
+  title: 'MenuList',
 };
 
 export const Basic = () => (
-  <MenuList
-    data={object('data', menuListData)}
-    onItemClick={action('onItemClick')}
-  />
+  <MenuList data={DATA} />
 );
 
 export const Customize = () => (
   <MenuList
-    data={object('data', menuListData)}
-    expandButtonText={collapseLength => `我有 ${collapseLength} 個 items 可以展開喔`}
-    itemGroupContainerStyle={{}}
+    data={object('data', DATA)}
+    expandButtonText={(collapseLength) => `我有 ${collapseLength} 個 items 可以展開喔`}
     numOfShowItems={number('numOfShowItems', 3)}
     onItemClick={action('onItemClick')}
+    onItemGroupTitleClick={action('onItemGroupTitleClick')}
     openAllSubMenu={boolean('openAllSubMenu', true)}
     renderExpandButton={({ children, toggleProps }) => (
       <button type="button" {...toggleProps} style={{ color: 'red' }}>
@@ -109,15 +107,30 @@ export const Customize = () => (
         {text}
       </Menu.Item>
     )}
-    renderItemGroupTitle={({ title }) => <div style={{ backgroundColor: '#f6ad55' }}>{title}</div>}
+    renderItemGroupTitle={({ onClick, title }) => <div onClick={onClick} style={{ backgroundColor: '#f6ad55' }}>{title}</div>}
     renderSubMenuTitle={({ title }) => <div style={{ backgroundColor: '#ed8936' }}>{title}</div>}
     subMenuStyle={{ backgroundColor: '#fbd38d' }}
+    truncateOptions={object('truncateOptions', { length: 99, omission: '+' })}
   />
 );
+Customize.story = {
+  parameters: {
+    docs: {
+      storyDescription: '切換至 **Canvas** tab 即可透過 **Knobs** 調整 `props`，以及 **Actions** 查看 callback function 的 payload',
+    },
+  },
+};
 
 export const Empty = () => (
   <MenuList
-    data={object('data', [])}
+    data={[]}
     renderEmpty={AntEmpty}
   />
 );
+Empty.story = {
+  parameters: {
+    docs: {
+      storyDescription: '資料為空時，顯示自訂的空狀態元件',
+    },
+  },
+};
