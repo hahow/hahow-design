@@ -2,10 +2,13 @@ import { Menu } from 'antd';
 import drop from 'lodash/drop';
 import includes from 'lodash/includes';
 import take from 'lodash/take';
+import uniqueId from 'lodash/uniqueId';
 import {
-  arrayOf, elementType, func, number, shape, string, bool,
+  arrayOf, elementType, func, number, shape, string,
 } from 'prop-types';
-import React, { createElement } from 'react';
+import React, {
+  createElement, useEffect, useMemo, useState,
+} from 'react';
 import stylePropType from 'react-style-proptype';
 
 import CollapseItemGroup from './components/CollapseItemGroup';
@@ -13,12 +16,8 @@ import ExpandButton from './components/ExpandButton';
 import ItemGroupTitle from './components/ItemGroupTitle';
 import MenuItem from './components/MenuItem';
 import SubMenuTitle from './components/SubMenuTitle';
-import buildItemGroupKey from './utils/buildItemGroupKey';
-import buildItemKey from './utils/buildItemKey';
-import buildSubMenuKey from './utils/buildSubMenuKey';
 import getExpandButtonText from './utils/getExpandButtonText';
 import truncate from './utils/truncate';
-import useSubMenu from './utils/useSubMenu';
 import {
   StyledEmptyContainer, StyledItemGroup, StyledMenu,
 } from './MenuList.style';
@@ -70,11 +69,22 @@ const { SubMenu } = Menu;
  */
 const MenuList = ({
   data, expandButtonText, itemGroupContainerStyle, itemGroupDividerStyle, itemGroupListStyle,
-  menuStyle, numOfShowItems, onItemClick, onItemGroupTitleClick, openAllSubMenu, renderEmpty,
+  menuStyle, numOfShowItems, onItemClick, onItemGroupTitleClick, renderEmpty,
   renderExpandButton, renderItem, renderItemGroupTitle, renderSubMenuTitle, subMenuStyle,
   truncateOptions,
 }) => {
-  const [openKeys, setOpenKeys] = useSubMenu({ data, openAllSubMenu });
+  // 有多少 SubMenu 就產生多少組 unique ID of array
+  const keys = useMemo(() => data.map(() => uniqueId()), [data]);
+  // 記下當前所有的 SubMenu keys，後面會用到
+  const [allSubMenuKeys, setAllSubMenuKeys] = useState(keys);
+  // 展開所有 SubMenu
+  const [openKeys, setOpenKeys] = useState(keys);
+
+  useEffect(() => {
+    // props.data 如果有變動，更新 SubMenu keys 相關 state
+    setAllSubMenuKeys(keys);
+    setOpenKeys(keys);
+  }, [data, keys]);
 
   if (data.length === 0) {
     return (
@@ -99,7 +109,7 @@ const MenuList = ({
     >
       {
         data.map((subMenuItem, subMenuIndex) => {
-          const subMenuKey = buildSubMenuKey(subMenuIndex);
+          const subMenuKey = allSubMenuKeys[subMenuIndex];
           const subMenuTitle = createElement(renderSubMenuTitle, {
             open: includes(openKeys, subMenuKey), // SubMenu 的開合狀態
             ...subMenuItem,
@@ -111,7 +121,7 @@ const MenuList = ({
               title={subMenuTitle}
             >
               {
-                subMenuItem.data.map((groupItem, groupIndex) => {
+                subMenuItem.data.map((groupItem) => {
                   const { data: itemData } = groupItem;
 
                   // 處理收合的 items
@@ -126,16 +136,17 @@ const MenuList = ({
                   const handleItemGroupTitleClick = (event) => onItemGroupTitleClick
                     && onItemGroupTitleClick(event, groupItem);
 
-                  const groupKey = buildItemGroupKey(subMenuKey, groupIndex);
+                  const groupKey = uniqueId();
                   const groupTitle = createElement(renderItemGroupTitle, {
                     ...groupItem,
                     onClick: handleItemGroupTitleClick,
                     showDivider: showItemGroupTitleDivider,
                   });
 
-                  const buildRenderItem = (item, itemIndex) => {
-                    const itemKey = buildItemKey(groupKey, itemIndex);
-                    const handleItemClick = (event) => onItemClick && onItemClick(event, item);
+                  const buildRenderItem = (item) => {
+                    const itemKey = uniqueId();
+                    const handleItemClick = (event) => onItemClick
+                      && onItemClick(event, item);
 
                     return createElement(renderItem, {
                       key: itemKey,
@@ -214,6 +225,7 @@ MenuList.propTypes = {
    * Menu.Item onClick callback
    * 第一個參數為 Menu.Item 原本的 event object
    * 第二個參數為 Item 的 data object
+   * 第三個參數為 ItemGroup 的 data object
    */
   onItemClick: func,
   /**
@@ -222,8 +234,6 @@ MenuList.propTypes = {
    * 第二個參數為 ItemGroup 的 data object
    */
   onItemGroupTitleClick: func,
-  /** 使否展開所有 SubMenu */
-  openAllSubMenu: bool,
   /** 自訂空資料元件 */
   renderEmpty: elementType,
   /**
@@ -266,7 +276,6 @@ MenuList.defaultProps = {
   numOfShowItems: 3,
   onItemClick: null,
   onItemGroupTitleClick: null,
-  openAllSubMenu: true,
   renderEmpty: null,
   renderExpandButton: ExpandButton,
   renderItem: MenuItem,
