@@ -31,11 +31,7 @@ const SearchList = ({
     setTerm(value);
   };
 
-  const handleItemClick = (event, payload) => {
-    // 根據 Menu.Item 的 key 找出字幕所在單元的 lessonId
-    const [, subIndex, groupIndex] = event.key.match(/sub-(\w+)-g-(\w+)-i-(\w+)/);
-    const { lessonId } = data[subIndex].data[groupIndex];
-
+  const handleItemClick = (event, payload, { lessonId }) => {
     onItemClick({
       lessonId,
       ...payload,

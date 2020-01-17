@@ -146,7 +146,7 @@ const MenuList = ({
                   const buildRenderItem = (item) => {
                     const itemKey = uniqueId();
                     const handleItemClick = (event) => onItemClick
-                      && onItemClick(event, item);
+                      && onItemClick(event, item, groupItem);
 
                     return createElement(renderItem, {
                       key: itemKey,
