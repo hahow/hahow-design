@@ -16,7 +16,7 @@ export const StyledRateButton = styled(({
     ${mixinSecondColor}
     ${mixinSize}
 
-    ${({ nowrap }) => nowrap && 'white-space: nowrap'};
+    ${({ nowrap }) => nowrap ? 'white-space: nowrap' : ''};
 
     .ant-rate-star-half .ant-rate-star-first, .ant-rate-star-full .ant-rate-star-second {
       color: inherit;
