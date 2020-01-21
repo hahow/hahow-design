@@ -39,6 +39,8 @@ Rate.propTypes = {
   firstColor: string,
   /** 符號的間距 */
   gutter: number,
+  /** 是否不換行 */
+  nowrap: bool,
   /** 失去焦點時的 callback */
   onBlur: func,
   /** 選擇時的 callback */
@@ -71,6 +73,7 @@ Rate.defaultProps = {
   disabled: false,
   firstColor: '#ffb940',
   gutter: 8,
+  nowrap: false,
   secondColor: 'rgba(0, 0, 0, 0.25)',
   size: 36,
 };

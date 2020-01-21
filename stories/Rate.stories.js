@@ -17,6 +17,7 @@ export const Basic = () => (
     count={number('count', 5)}
     firstColor={color('firstColor', '#ffb940')}
     gutter={number('gutter', 8)}
+    nowrap={boolean('nowrap', false)}
     onBlur={action('onBlur')}
     onChange={action('onChange')}
     onFocus={action('onFocus')}
