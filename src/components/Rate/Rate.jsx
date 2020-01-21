@@ -73,7 +73,7 @@ Rate.defaultProps = {
   disabled: false,
   firstColor: '#ffb940',
   gutter: 8,
-  nowrap: false,
+  nowrap: true,
   secondColor: 'rgba(0, 0, 0, 0.25)',
   size: 36,
 };
