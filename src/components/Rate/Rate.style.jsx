@@ -7,7 +7,7 @@ import {
 } from './utils/mixinCSS/mixinCSS';
 
 export const StyledRateButton = styled(({
-  firstColor, gutter, secondColor, size, ...rest
+  firstColor, gutter, nowrap, secondColor, size, ...rest
 }) => <Rate {...rest} />)`
   &.ant-rate {
     ${mixinFirstColor}
@@ -16,7 +16,7 @@ export const StyledRateButton = styled(({
     ${mixinSecondColor}
     ${mixinSize}
 
-    min-width: ${({ gutter, size, count }) => (size * count) + (gutter * (count - 1))}px;
+    ${({ nowrap }) => nowrap ? 'white-space: nowrap' : ''};
 
     .ant-rate-star-half .ant-rate-star-first, .ant-rate-star-full .ant-rate-star-second {
       color: inherit;
