@@ -1,6 +1,6 @@
 {
   "name": "@hahow/hahow-design",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "description": "hahow-design React component",
   "main": "lib/index.js",
   "module": "es/index.js",
