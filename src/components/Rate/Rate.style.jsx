@@ -16,6 +16,8 @@ export const StyledRateButton = styled(({
     ${mixinSecondColor}
     ${mixinSize}
 
+    min-width: ${({ gutter, size, count }) => (size * count) + (gutter * (count - 1))}px;
+
     .ant-rate-star-half .ant-rate-star-first, .ant-rate-star-full .ant-rate-star-second {
       color: inherit;
     }
