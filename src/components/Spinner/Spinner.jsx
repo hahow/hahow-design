@@ -59,8 +59,8 @@ Spinner.defaultProps = {
   inverse: false,
   size: 48,
   style: {
-    'margin-right': 'auto',
-    'margin-left': 'auto',
+    marginRight: 'auto',
+    marginLeft: 'auto',
   },
 };
 
