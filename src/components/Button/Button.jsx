@@ -37,26 +37,25 @@ const Button = ({
   // 以下為另外處理的 props
   children, icon, iconPos, testId,
 }) => (
-  <ThemeProvider theme={theme}>
-    <StyledButton
-      block={block}
-      brand={brand}
-      className={className}
-      data-test-id={testId}
-      disabled={disabled}
-      href={href}
-      htmlType={htmlType}
-      loading={loading}
-      onClick={onClick}
-      size={size}
-      target={target}
-      type={type}
-    >
-      {icon && iconPos === 'left' && <Icon type={icon} />}
-      {children}
-      {icon && iconPos === 'right' && <Icon type={icon} />}
-    </StyledButton>
-  </ThemeProvider>
+  <StyledButton
+    block={block}
+    brand={brand}
+    className={className}
+    data-test-id={testId}
+    disabled={disabled}
+    href={href}
+    htmlType={htmlType}
+    loading={loading}
+    onClick={onClick}
+    size={size}
+    target={target}
+    theme={theme}
+    type={type}
+  >
+    {icon && iconPos === 'left' && <Icon type={icon} />}
+    {children}
+    {icon && iconPos === 'right' && <Icon type={icon} />}
+  </StyledButton>
 );
 
 Button.propTypes = {
