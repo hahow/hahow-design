@@ -11,5 +11,17 @@ module.exports = {
     extra: {
       extensions: ['.js', '.jsx'],
     },
+    config(config) {
+      return {
+        ...config,
+        external: {
+          'styled-components': {
+            commonjs: "styled-components",
+            commonjs2: "styled-components",
+            amd: "styled-components",
+          },
+        },
+      };
+    },
   },
 };
