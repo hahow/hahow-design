@@ -5,7 +5,7 @@ export const mixinSize = ({ size }) => css`
 `;
 
 export const mixinFirstColor = ({ firstColor }) => css`
-  color: ${firstColor}
+  color: ${firstColor};
 `;
 
 export const mixinSecondColor = ({ secondColor }) => css`
