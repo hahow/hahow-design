@@ -17,6 +17,8 @@ A [Hahow for Business](https://business.hahow.in) React UI library.
 [![Netlify Status][netlify-badge]][netlify]
 [![This project is using Percy.io for visual regression testing.][percy-badge]][percy]
 
+[![Open in Visual Studio Online][vso-badge]][vso]
+
 </div>
 
 ## Table of Contents
@@ -76,3 +78,6 @@ See more [CONTRIBUTING](/CONTRIBUTING.md).
 
 [percy-badge]: https://percy.io/static/images/percy-badge.svg
 [percy]: https://percy.io/Hahow/hahow-design
+
+[vso-badge]: https://img.shields.io/endpoint?style=social&url=https%3A%2F%2Faka.ms%2Fvso-badge
+[vso]: https://online.visualstudio.com/environments/new?name=Hahow%20Design&repo=hahow/hahow-design
