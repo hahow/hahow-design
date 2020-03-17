@@ -34,6 +34,9 @@ import { StyledButton } from './Button.style';
 const Button = ({
   // 以下為 antd/Button 原生 props
   block, brand, className, disabled, href, htmlType, loading, onClick, size, target, type,
+  // 以下為 antd/Button 文件沒列出來、但會傳進來的 props
+  // eslint-disable-next-line react/prop-types
+  onContextMenu, onMouseDown, onTouchStart, onMouseEnter, onMouseLeave, onFocus, onBlur,
   // 以下為另外處理的 props
   children, icon, iconPos, testId,
 }) => (
@@ -51,6 +54,13 @@ const Button = ({
     target={target}
     theme={theme}
     type={type}
+    onContextMenu={onContextMenu}
+    onMouseDown={onMouseDown}
+    onTouchStart={onTouchStart}
+    onMouseEnter={onMouseEnter}
+    onMouseLeave={onMouseLeave}
+    onFocus={onFocus}
+    onBlur={onBlur}
   >
     {icon && iconPos === 'left' && <Icon type={icon} />}
     {children}
