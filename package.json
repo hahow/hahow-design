@@ -19,7 +19,7 @@
     "snapshot": "build-storybook && percy-storybook",
     "start": "npm run storybook",
     "storybook": "start-storybook -p 6006 -s public",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "dependencies": {
     "@crello/react-lottie": "0.0.7",
