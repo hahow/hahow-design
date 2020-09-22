@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions';
-import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
+import { boolean, select, text, withKnobs, object } from '@storybook/addon-knobs';
 import { Table } from 'antd';
 import React from 'react';
 
@@ -39,6 +39,11 @@ export const WhiteThin = () => (
 export const Link = () => (
   <Button type="link">
     全部下載
+  </Button>
+);
+export const Dataset = () => (
+  <Button dataset={{ 'test-id': 'StartCourse', 'test-course-title': 'Coding 101' }}>
+    Inspact Me !
   </Button>
 );
 export const AllButtons = () => {
@@ -168,7 +173,7 @@ export const Playground = () => {
   const loading = boolean('loading', false);
   const onClick = action('onClick');
   const size = select('size', ['default', 'large'], 'large');
-  const testId = text('testId', '');
+  const dataset = object('dataset', { 'test-id': 'StartCourse', 'test-course-title': 'Coding 101' });
   const type = select('type', [null, 'link', 'plain', 'transparent', 'whiteThin']);
 
   return (
@@ -183,7 +188,7 @@ export const Playground = () => {
       loading={loading}
       onClick={onClick}
       size={size}
-      testId={testId}
+      dataset={dataset}
       type={type}
     >
       繼續上課
