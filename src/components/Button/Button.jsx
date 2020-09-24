@@ -2,9 +2,9 @@ import { Icon } from 'antd';
 import {
   bool, func, node, number, oneOf, oneOfType, shape, string,
 } from 'prop-types';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import prefixObjectKey from './utils/prefixObjectKey';
+
 import theme from '../../theme';
 import { StyledButton } from './Button.style';
 
@@ -38,40 +38,35 @@ const Button = ({
   // eslint-disable-next-line react/prop-types
   onContextMenu, onMouseDown, onTouchStart, onMouseEnter, onMouseLeave, onFocus, onBlur,
   // 以下為另外處理的 props
-  children, icon, iconPos, dataset,
-}) => {
-  const dataAttributes = useMemo(() => prefixObjectKey(dataset, 'data-'), [dataset]);
-
-  return (
-    <StyledButton
-      block={block}
-      brand={brand}
-      className={className}
-      disabled={disabled}
-      href={href}
-      htmlType={htmlType}
-      loading={loading}
-      onClick={onClick}
-      size={size}
-      target={target}
-      theme={theme}
-      type={type}
-      onContextMenu={onContextMenu}
-      onMouseDown={onMouseDown}
-      onTouchStart={onTouchStart}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...dataAttributes}
-    >
-      {icon && iconPos === 'left' && <Icon type={icon} />}
-      {children}
-      {icon && iconPos === 'right' && <Icon type={icon} />}
-    </StyledButton>
-  );
-};
+  children, icon, iconPos, testId,
+}) => (
+  <StyledButton
+    block={block}
+    brand={brand}
+    className={className}
+    data-test-id={testId}
+    disabled={disabled}
+    href={href}
+    htmlType={htmlType}
+    loading={loading}
+    onClick={onClick}
+    size={size}
+    target={target}
+    theme={theme}
+    type={type}
+    onContextMenu={onContextMenu}
+    onMouseDown={onMouseDown}
+    onTouchStart={onTouchStart}
+    onMouseEnter={onMouseEnter}
+    onMouseLeave={onMouseLeave}
+    onFocus={onFocus}
+    onBlur={onBlur}
+  >
+    {icon && iconPos === 'left' && <Icon type={icon} />}
+    {children}
+    {icon && iconPos === 'right' && <Icon type={icon} />}
+  </StyledButton>
+);
 
 Button.propTypes = {
   /** 將按鈕寬度調整為其 parent 寬度的選項 */
@@ -100,14 +95,8 @@ Button.propTypes = {
   size: oneOf(['default', 'large']),
   /** 相當於 `a` 連結的 `target` 屬性，`href` 存在時生效 */
   target: string,
-  /**
-   * 生成 data-test-id 之類的 attribute 方便測試用。例如：
-   *
-   * <Button dataset={{ 'test-id': 'StartCourse', 'test-course-title': 'Coding 101' }} />
-   * 最終會 render 成 <button data-test-id=StartCourse data-test-course-title='Coding 101' />
-   * 在 E2E 測試中就可以透過 `[data-test-id=StartCourse][data-test-course-title='Coding 101']` 來定位 element
-   */
-  dataset: shape({}),
+  /** 生成 [data-test-id] attribute 方便測試用 */
+  testId: string,
   /** 按鈕的種類 */
   type: oneOf([null, 'link', 'plain', 'transparent', 'whiteThin']),
 };
@@ -126,7 +115,7 @@ Button.defaultProps = {
   onClick: null,
   size: 'default',
   target: null,
-  dataset: {},
+  testId: null,
   type: null,
 };
 
