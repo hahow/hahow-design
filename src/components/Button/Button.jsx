@@ -38,7 +38,7 @@ const Button = ({
   // eslint-disable-next-line react/prop-types
   onContextMenu, onMouseDown, onTouchStart, onMouseEnter, onMouseLeave, onFocus, onBlur,
   // 以下為另外處理的 props
-  children, icon, iconPos, testId,
+  children, icon, iconPos,
   // 為了 data attributes 之類的彈性
   // 如果想額外傳的是 Ant Design Button 有的 prop，請還是來這裡更新 propTypes！
   ...restProps
@@ -47,7 +47,6 @@ const Button = ({
     block={block}
     brand={brand}
     className={className}
-    data-test-id={testId}
     disabled={disabled}
     href={href}
     htmlType={htmlType}
@@ -101,8 +100,6 @@ Button.propTypes = {
   size: oneOf(['default', 'large']),
   /** 相當於 `a` 連結的 `target` 屬性，`href` 存在時生效 */
   target: string,
-  /** 生成 [data-test-id] attribute 方便測試用 */
-  testId: string,
   /** 按鈕的種類 */
   type: oneOf([null, 'link', 'plain', 'transparent', 'whiteThin']),
 };
@@ -121,7 +118,6 @@ Button.defaultProps = {
   onClick: null,
   size: 'default',
   target: null,
-  testId: null,
   type: null,
 };
 
