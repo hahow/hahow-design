@@ -39,6 +39,9 @@ const Button = ({
   onContextMenu, onMouseDown, onTouchStart, onMouseEnter, onMouseLeave, onFocus, onBlur,
   // 以下為另外處理的 props
   children, icon, iconPos, testId,
+  // 為了 data attributes 之類的彈性
+  // 如果想額外傳的是 Ant Design Button 有的 prop，請還是來這裡更新 propTypes！
+  ...restProps
 }) => (
   <StyledButton
     block={block}
@@ -61,6 +64,9 @@ const Button = ({
     onMouseLeave={onMouseLeave}
     onFocus={onFocus}
     onBlur={onBlur}
+    // NOTE: 為了能支援任意 data attrite 的 escape hatch（https://git.io/JU2TH）
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    {...restProps}
   >
     {icon && iconPos === 'left' && <Icon type={icon} />}
     {children}

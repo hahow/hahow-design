@@ -41,6 +41,11 @@ export const Link = () => (
     全部下載
   </Button>
 );
+export const DataAttributes = () => (
+  <Button data-test-id="MyButton">
+    Inspect Me!
+  </Button>
+);
 export const AllButtons = () => {
   const block = boolean('block', false);
   const disabled = boolean('disabled', false);
