@@ -41,6 +41,11 @@ export const Link = () => (
     全部下載
   </Button>
 );
+export const DataAttributes = () => (
+  <Button data-test-id="MyButton">
+    Inspect Me!
+  </Button>
+);
 export const AllButtons = () => {
   const block = boolean('block', false);
   const disabled = boolean('disabled', false);
@@ -168,7 +173,6 @@ export const Playground = () => {
   const loading = boolean('loading', false);
   const onClick = action('onClick');
   const size = select('size', ['default', 'large'], 'large');
-  const testId = text('testId', '');
   const type = select('type', [null, 'link', 'plain', 'transparent', 'whiteThin']);
 
   return (
@@ -183,7 +187,6 @@ export const Playground = () => {
       loading={loading}
       onClick={onClick}
       size={size}
-      testId={testId}
       type={type}
     >
       繼續上課
